@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CidrRootsConfiguration">
+    <sourceRoots>
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/ArduinoOTA/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/AsyncUDP/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/BLE/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/BluetoothSerial/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/DNSServer/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/EEPROM/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/ESPmDNS/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/Ethernet/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/FFat/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/FS/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/HTTPClient/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/HTTPUpdate/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/I2S/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/Insights/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/LittleFS/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/NetBIOS/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/Preferences/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/RainMaker/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/SD/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/SD_MMC/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/SPI/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/SPIFFS/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/SimpleBLE/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/Ticker/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/USB/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/Update/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/WebServer/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/WiFiProv/src" />
+      <file path="$USER_HOME$/.platformio/packages/framework-arduinoespressif32/libraries/Wire/src" />
+      <file path="$PROJECT_DIR$/../../../Arduino/libraries/AsyncTCP/src" />
+      <file path="$PROJECT_DIR$/../../../Arduino/libraries/IRremoteESP8266/src" />
+      <file path="$PROJECT_DIR$/../../../Arduino/libraries/IRremoteESP8266/test" />
+      <file path="$PROJECT_DIR$/../../../Arduino/libraries/IRremoteESP8266/tools" />
+      <file path="$PROJECT_DIR$/../../../Arduino/libraries/Painless_Mesh/src" />
+      <file path="$PROJECT_DIR$/../../../Arduino/libraries/SigmaDSP/src" />
+      <file path="$PROJECT_DIR$" />
+    </sourceRoots>
+  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="PlatformIOSettings">
+    <option name="linkedExternalProjectsSettings">
+      <PlatformioProjectSettings>
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="modules">
+          <set>
+            <option value="$PROJECT_DIR$" />
+          </set>
+        </option>
+      </PlatformioProjectSettings>
+    </option>
+  </component>
+  <component name="PlatformIOWorkspace" PROJECT_DIR="$PROJECT_DIR$" />
+</project>

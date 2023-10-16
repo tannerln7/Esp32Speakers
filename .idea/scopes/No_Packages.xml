@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="No Packages" pattern="file:src//*||file:include//*||file:platformio.ini" />
+</component>

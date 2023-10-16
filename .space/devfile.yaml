@@ -1,0 +1,17 @@
+schemaVersion: 2.2.0
+attributes:
+    space:
+      # regular, large, xlarge
+      instanceType: regular
+      editor:
+        type: CLion
+
+components:
+- name: image-build
+  image:
+    # (Required)
+    imageName: sglahn/platformio-core:latest
+    dockerfile:
+      # (Required) path to Dockerfile relative to projectRoot
+      uri: Dockerfile
+    
