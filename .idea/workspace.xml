@@ -14,7 +14,40 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fd58d8ef-2135-42cc-98fd-0316cba02f47" name="Changes" comment="commit" />
+    <list default="true" id="fd58d8ef-2135-42cc-98fd-0316cba02f47" name="Changes" comment="commit">
+      <change afterPath="$PROJECT_DIR$/.pio/libdeps/Controller/integrity.dat" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Docker/Acks.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/include/BufferHandle.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/include/BufferHandle.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/include/DEFINES.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/include/Debug.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/include/Debug.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/include/Handlers.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/include/Handlers.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/include/INCLUDE.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/include/IR.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/include/IR.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/include/Loops.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/include/Loops.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/include/Message.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/include/Message.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/include/SharedVariables.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/include/VariableInit.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/include/VariableInit.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Left/idedata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/project.checksum" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/project.checksum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/ESP32-A2DP" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/Left/ESP32-A2DP" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/integrity.dat" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/Left/integrity.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/AudioBuffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/AudioBuffer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/platformio.ini" beforeDir="false" afterPath="$PROJECT_DIR$/platformio.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/include/README" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/README" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/lib/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/src/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Left/src/1_VolumeLeft.ino" beforeDir="false" afterPath="$PROJECT_DIR$/src/Left/src/1_VolumeLeft.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Right/src/1_VolumeRight.ino" beforeDir="false" afterPath="$PROJECT_DIR$/src/Right/src/1_VolumeRight.cpp" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -28,7 +61,23 @@
   <component name="ClangdSettings">
     <option name="formatViaClangd" value="false" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Left" />
+  <component name="EmbeddedSvdWindowState">
+    <option name="columnWidths">
+      <list>
+        <option value="237" />
+        <option value="102" />
+        <option value="1244" />
+      </list>
+    </option>
+    <option name="columnOrder">
+      <list>
+        <option value="Name" />
+        <option value="Value" />
+        <option value="Description" />
+      </list>
+    </option>
+  </component>
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Controller" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -48,7 +97,7 @@
         </map>
       </branch-storage>
     </excluded-from-favorite>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/src/Controller" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/lib/painlessMesh/src/painlessmesh/configuration.hpp" root0="FORCE_HIGHLIGHTING" />
@@ -88,6 +137,9 @@
       </map>
     </option>
   </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="ProjectErrors" />
+  </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
     <option name="majorVersion" value="2023" />
@@ -121,8 +173,9 @@
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "vcs.Git",
+    "settings.editor.selected.configurable": "preferences.customizations",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -134,18 +187,21 @@
       <recent name="C:\Users\tanne\Documents\PlatformIO\Projects\esp32Speakers\.pio\libdeps\Right" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\tanne\Documents\PlatformIO\Projects\esp32Speakers\Docker" />
+      <recent name="C:\Users\tanne\Documents\PlatformIO\Projects\esp32Speakers\src\Controller\include" />
+      <recent name="C:\Users\tanne\Documents\PlatformIO\Projects\esp32Speakers\src\Controller\lib" />
       <recent name="C:\Users\tanne\Documents\PlatformIO\Projects\esp32Speakers\lib" />
       <recent name="C:\Users\tanne\Documents\PlatformIO\Projects\esp32Speakers\src\Left\lib" />
-      <recent name="C:\Users\tanne\Documents\PlatformIO\Projects\esp32Speakers\.pio\libdeps\Right" />
-      <recent name="C:\Users\tanne\Documents\PlatformIO\Projects\esp32Speakers\include" />
-      <recent name="C:\Users\tanne\Documents\PlatformIO\Projects\esp32Speakers\src\Controller\include" />
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
+    </configuration>
+    <configuration name="PlatformIO" type="platformio" factoryName="PlatformIO Debug" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="esp32Speakers" TARGET_NAME="PlatformIO" CONFIG_NAME="PlatformIO">
+      <method v="2" />
     </configuration>
     <configuration name="PlatformIO" type="platformio" factoryName="PlatformIO Debug" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="esp32Speakers" TARGET_NAME="PlatformIO" CONFIG_NAME="PlatformIO">
       <method v="2" />
@@ -168,7 +224,12 @@
       <workItem from="1697422416408" duration="1157000" />
       <workItem from="1697423718074" duration="309000" />
       <workItem from="1697424079528" duration="10124000" />
-      <workItem from="1697434435070" duration="107000" />
+      <workItem from="1697434435070" duration="730000" />
+      <workItem from="1697511185592" duration="3772000" />
+      <workItem from="1697564815325" duration="2862000" />
+      <workItem from="1697669790394" duration="22000" />
+      <workItem from="1697670682256" duration="28651000" />
+      <workItem from="1697926812313" duration="42636000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -186,7 +247,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697434149673</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="commit">
+      <option name="closed" value="true" />
+      <created>1697434734082</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1697434734082</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">

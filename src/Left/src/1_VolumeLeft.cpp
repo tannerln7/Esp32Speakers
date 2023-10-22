@@ -3,14 +3,14 @@
 #include <painlessMesh.h>
 #include "SigmaDSP_parameters.h"
 #include <../lib/AudioBuffer.h>
-
+#include <../lib/DSPEEPROM.h>
 
 #define   MESH_PREFIX     "LivingRoom"
 #define   MESH_PASSWORD   "PassworD1234"
 #define   MESH_PORT       5555
 
 SigmaDSP* dsp;
-
+DSPEEPROM* ee;
 
 Scheduler userScheduler; 
 painlessMesh mesh;
@@ -39,10 +39,18 @@ String getValue(const String& data, char separator, int index);
 void sendHeartbeat();
 void sendMessage();
 void receivedCallback(uint32_t, String &);
-void newConnectionCallback(uint32_t nodeId);
+void newConnectionCallback(__attribute__((unused)) uint32_t nodeId);
 void changedConnectionCallback();
 void nodeTimeAdjustedCallback(int32_t offset);
 void changeSource(int);
+void parseIncomingMessage(String &msg, String &command, String &value1, String &value2, String &value3, String &value4, String &value5, String &value6, String &value7);
+void handleVolumeCommand(uint32_t from, String &value1);
+void handleSubCommand(uint32_t from, String &value1);
+void handleMuteCommand(uint32_t from, String &value1);
+void handleSourceCommand(uint32_t from, String &value1);
+void handleHeartbeatCommand(uint32_t from, String &value1, String &value2, String &value3, String &value4, String &value5, String &value6, String &value7);
+void handleAckCommand(uint32_t from, String &value1, String &value2, String &value3, String &value4, String &value5, String &value6, String &value7);
+
 
 Task taskSendMessage( TASK_SECOND * 1 , TASK_FOREVER, &sendMessage );
 
@@ -70,27 +78,27 @@ void setup() {
 
   Wire.begin();
   dsp->begin();
-  //ee.begin();
+  ee->begin();
 
   delay(2000);
 
   Serial.println(F("Pinging i2c lines...\n0 -> device is present\n2 -> device is not present"));
   Serial.print(F("DSP response: "));
   Serial.println(dsp->ping());
-  //Serial.print(F("EEPROM ping: "));
-  //Serial.println(ee.ping());
+  Serial.print(F("EEPROM ping: "));
+  Serial.println(ee->ping());
 
   // Use this step if no EEPROM is present
-  Serial.print(F("\nLoading DSP program... "));
-  loadProgram(*dsp);
-  Serial.println("Done!\n");
+  //Serial.print(F("\nLoading DSP program... "));
+  //loadProgram(*dsp);
+  //Serial.println("Done!\n");
 
 
   // Comment out the three code lines above and use this step instead if EEPROM is present
   // The last parameter in writeFirmware is the FW version, and prevents the MCU from overwriting on every reboot
-  //ee.writeFirmware(DSP_eeprom_firmware, sizeof(DSP_eeprom_firmware), 0);
-  //dsp.reset();
-  //delay(2000); // Wait for the FW to load from the EEPROM
+  ee->writeFirmware(DSP_eeprom_firmware, sizeof(DSP_eeprom_firmware), 0);
+  dsp->reset();
+  delay(2000); // Wait for the FW to load from the EEPROM
 
   setVolume(currentVolume);
   setSubVolume(currentVolume);
@@ -151,57 +159,97 @@ void sendHeartbeat() {
 
 
 void handleCallback(uint32_t from, String &msg) {
-  String command = getValue(msg, ':', 0);
-  String value1 = getValue(msg, ':', 1);
-  String value2 = getValue(msg, ':', 2);
-  String value3 = getValue(msg, ':', 3);
-  String value4 = getValue(msg, ':', 4);
-  Serial.println("COMMAND VALUES " + command + " " + value1 + " " + value2 + " " + value3 + " " + value4);
-  if (from == serverId || command.equals("Ack")) {
-    if (command.equals("Volume")) {
-      setVolume(value1.toFloat());
-      mesh.sendSingle(from, "VolumeACK:" + String(currentVolume));
-      Serial.println("Volume changed to " + String(currentVolume));
-    } else if (command.equals("Sub")) {
-      setSubVolume(value1.toFloat());  // Using value2
-      mesh.sendSingle(from, "SubACK:" + String(currentSubVolume));
-      Serial.print("Sub Volume Changed to " + String(currentSubVolume));
-    } else if (command.equals("Mute")) {
-      mute(value1.toInt());
-      mesh.sendSingle(from, "Mute:" + String(muteState));
-      Serial.println("Mute set to " + String(muteState));
-    } else if (command.equals("Ack")) {
-      ackReceived = true;
-      serverId = from;
-      setVolume(value1.toFloat());
-      setSubVolume(value2.toFloat());
-      mute(value3.toInt());
-      changeSource(value4.toInt());
-      Serial.println("Server ack complete.");
-      Serial.println("Volume: " + String(value1));
-      Serial.println("Sub Volume: " + String(value2));
-    } else if (command.equals("heartBeatGOOD")) {
+    String command, value1, value2, value3, value4, value5, value6, value7;
+    parseIncomingMessage(msg, command, value1, value2, value3, value4, value5, value6, value7);
+    Serial.println(
+            "COMMAND VALUES " + command + " " + value1 + " " + value2 + " " + value3 + " " + value4 + " " + value5 +
+            " " + value6 + " " + value7);
+    if (from == serverId || command.equals("Ack")) {
+        if (command.equals("Volume")) {
+            handleVolumeCommand(from, value1);
+        } else if (command.equals("Sub")) {
+            handleSubCommand(from, value1);
+        } else if (command.equals("Mute")) {
+            handleMuteCommand(from, value1);
+        } else if (command.equals("Source")) {
+            handleSourceCommand(from, value1);
+        } else if (command.equals("heartBeat")) {
+            handleHeartbeatCommand(from, value1, value2, value3, value4, value5, value6, value7);
+        } else if (command.equals("ACK")) {
+            handleAckCommand(from, value1, value2, value3, value4, value5, value6, value7);
+        } else {
+            Serial.println("Unknown Command...");
+        }
+    }
+}
+
+void handleVolumeCommand(uint32_t from, String &value1){
+    setVolume(value1.toFloat());
+    mesh.sendSingle(from, "VolumeACK:" + String(currentVolume));
+    Serial.println("Volume changed to " + String(currentVolume));
+}
+void handleSubCommand(uint32_t from, String &value1){
+    setSubVolume(value1.toFloat());  // Using value2
+    mesh.sendSingle(from, "SubACK:" + String(currentSubVolume));
+    Serial.print("Sub Volume Changed to " + String(currentSubVolume));
+}
+void handleMuteCommand(uint32_t from, String &value1){
+    mute(value1.toInt());
+    mesh.sendSingle(from, "Mute:" + String(muteState));
+    Serial.println("Mute set to " + String(muteState));
+}
+
+void handleSourceCommand(uint32_t from, String &value1){
+    changeSource(value1.toInt());
+    mesh.sendSingle(from, "SourceACK:" + String(currentSource));
+    Serial.println("Source changed to " + String(currentSource));
+}
+
+void handleHeartbeatCommand(uint32_t from, String &value1, String &value2, String &value3, String &value4, String &value5, String &value6, String &value7){
+    lastHeartbeatReceived = millis();
+    if (value1.equals("GOOD")){
         lastHeartbeat = millis();
         heartbeatTimeoutCounter = 0;
         Serial.println("Heartbeat GOOD");
-    } else if (command.equals("heartBeatBAD")) {
-        setVolume(value1.toFloat());
-        setSubVolume(value2.toFloat());  // Assuming you've extracted value3 as well
-        mute(value3.toInt());
-        changeSource(value4.toInt());
+    }else if (value1.equals("BAD")){
+        setVolume(value2.toFloat());
+        setSubVolume(value3.toFloat());  // Assuming you've extracted value3 as well
+        mute(value4.toInt());
+        changeSource(value5.toInt());
         Serial.println("Heartbeat BAD!");
         Serial.println("Volume set to " + String(currentVolume));
         Serial.println("Sub Volume set to " + String(currentSubVolume));
         Serial.println("Mute set to " + String(muteState));
         Serial.println("Source set to " + String(currentSource));
-    } else if (command.equals("Source")){
-        changeSource(value1.toInt());
-        mesh.sendSingle(from, "SourceACK:" + String(currentSource));
-        Serial.println("Source changed to " + String(currentSource));
-    }else{
-        Serial.println("Unknown Command...");
     }
-  }
+}
+
+void handleAckCommand(uint32_t from, String &value1, String &value2, String &value3, String &value4, String &value5, String &value6, String &value7){
+    ackReceived = true;
+    serverId = from;
+    setVolume(value1.toFloat());
+    setSubVolume(value2.toFloat());
+    mute(value3.toInt());
+    changeSource(value4.toInt());
+    Serial.println("Server ack complete.");
+    Serial.println("Volume: " + String(value1));
+    Serial.println("Sub Volume: " + String(value2));
+    Serial.println("Mute: " + String(value3));
+    Serial.println("Source: " + String(value4));
+}
+
+
+
+void parseIncomingMessage(String &msg, String &command, String &value1, String &value2, String &value3, String &value4,
+                          String &value5, String &value6, String &value7) {
+    command = getValue(msg, ':', 0);
+    value1 = getValue(msg, ':', 1);
+    value2 = getValue(msg, ':', 2);
+    value3 = getValue(msg, ':', 3);
+    value4 = getValue(msg, ':', 4);
+    value5 = getValue(msg, ':', 5);
+    value6 = getValue(msg, ':', 6);
+    value7 = getValue(msg, ':', 7);
 }
 
 

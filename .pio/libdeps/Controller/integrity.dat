@@ -1,0 +1,5 @@
+ottowinter/ESPAsyncWebServer-esphome@^3.1.0
+ArduinoWebsockets@^0.5.0
+https://github.com/pschatzmann/ESP32-A2DP.git
+crankyoldgit/IRremoteESP8266@^2.8.6
+ArduinoJson@^6.17.3

@@ -3,13 +3,14 @@
 #include <painlessMesh.h>
 #include "SigmaDSP_parameters.h"
 #include <../lib/AudioBuffer.h>
+#include <../lib/DSPEEPROM.h>
 
 #define   MESH_PREFIX     "LivingRoom"
 #define   MESH_PASSWORD   "PassworD1234"
 #define   MESH_PORT       5555
 
 SigmaDSP* dsp;
-
+DSPEEPROM* ee;
 
 Scheduler userScheduler;
 painlessMesh mesh;
@@ -38,7 +39,7 @@ String getValue(const String& data, char separator, int index);
 void sendHeartbeat();
 void sendMessage();
 void receivedCallback(uint32_t, String &);
-void newConnectionCallback(uint32_t nodeId);
+void newConnectionCallback(__attribute__((unused)) uint32_t nodeId);
 void changedConnectionCallback();
 void nodeTimeAdjustedCallback(int32_t offset);
 void changeSource(int);
@@ -50,6 +51,7 @@ void setup() {
     Serial.begin(115200);
     Wire.begin();  // Ensure Wire is initialized
     dsp = new SigmaDSP(Wire, DSP_I2C_ADDRESS, 48000.00f);
+    ee = new DSPEEPROM(Wire, EEPROM_I2C_ADDRESS, 256, -1);
 
     mesh.setDebugMsgTypes(  ERROR | STARTUP | CONNECTION | DEBUG );  // set before init() so that you can see startup messages
     mesh.init( MESH_PREFIX, MESH_PASSWORD, &userScheduler, MESH_PORT );
@@ -70,27 +72,27 @@ void setup() {
 
     Wire.begin();
     dsp->begin();
-    //ee.begin();
+    ee->begin();
 
     delay(2000);
 
     Serial.println(F("Pinging i2c lines...\n0 -> device is present\n2 -> device is not present"));
     Serial.print(F("DSP response: "));
     Serial.println(dsp->ping());
-    //Serial.print(F("EEPROM ping: "));
-    //Serial.println(ee.ping());
+    Serial.print(F("EEPROM ping: "));
+    Serial.println(ee.ping());
 
     // Use this step if no EEPROM is present
-    Serial.print(F("\nLoading DSP program... "));
-    loadProgram(*dsp);
-    Serial.println("Done!\n");
+    //Serial.print(F("\nLoading DSP program... "));
+    //loadProgram(*dsp);
+    //Serial.println("Done!\n");
 
 
     // Comment out the three code lines above and use this step instead if EEPROM is present
     // The last parameter in writeFirmware is the FW version, and prevents the MCU from overwriting on every reboot
-    //ee.writeFirmware(DSP_eeprom_firmware, sizeof(DSP_eeprom_firmware), 0);
-    //dsp.reset();
-    //delay(2000); // Wait for the FW to load from the EEPROM
+    ee->writeFirmware(DSP_eeprom_firmware, sizeof(DSP_eeprom_firmware), 0);
+    dsp->reset();
+    delay(2000); // Wait for the FW to load from the EEPROM
 
     setVolume(currentVolume);
     setSubVolume(currentVolume);
