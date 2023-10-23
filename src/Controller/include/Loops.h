@@ -4,19 +4,19 @@
 
 #ifndef ESP32SPEAKERS_LOOPS_H
 #define ESP32SPEAKERS_LOOPS_H
+#endif //ESP32SPEAKERS_LOOPS_H
 
+#include <SharedVariables.h>
+#include "BluetoothA2DPSink.h"
+#include "AsyncWebSocket.h"
 
-#include <INCLUDE.h>
 
 void ackCheck();
 void ackReset();
 void initDebug();
 void wifiSetup();
 void bluetoothSetup();
-void irSetup();
-void webSocketSetup();
 void webServerSetup();
-void bufferSetup();
+void webSocketSetup();
 
 
-#endif //ESP32SPEAKERS_LOOPS_H

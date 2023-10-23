@@ -4,19 +4,15 @@
 #pragma once
 
 #include <Arduino.h>
-#include "AsyncWebSocket.h"
-#include <BluetoothA2DPSink.h>
-#include <AudioBuffer.h>
-
+#include <AsyncWebSocket.h>
 
 #ifndef ESP32SPEAKERS_SHAREDVARIABLES_H
 #define ESP32SPEAKERS_SHAREDVARIABLES_H
 
 #endif //ESP32SPEAKERS_SHAREDVARIABLES_H
 
+extern AsyncWebServer server;
 extern AsyncWebSocket webserv;
-extern BluetoothA2DPSink a2dp_sink;
-extern AudioBuffer *audioBuffer;
 
 //start-up DSP settings
 extern float currentLinearVolume;
@@ -28,12 +24,8 @@ extern int currentSource;
 
 //constants
 
-const unsigned long debounceDelay = 200;
-const unsigned long initDebounce = 3000;
+extern const unsigned long debounceDelay;
 
-//websocket variables
-extern String lastMessageLeft;
-extern String lastMessageRight;
 extern unsigned long lastSendTimeLeft;
 extern unsigned long lastSendTimeRight;
 extern int retryCountLeft;
@@ -45,12 +37,8 @@ extern bool leftAck;
 extern bool rightAck;
 extern bool leftTime;
 extern bool rightTime;
+extern String lastMessageLeft;
+extern String lastMessageRight;
 
 extern bool leftInit;
 extern bool rightInit;
-extern unsigned long lastLeftInitTime;
-extern unsigned long lastRightInitTime;
-
-bool timeSync;
-
-const uint32_t delay_time = 2000;

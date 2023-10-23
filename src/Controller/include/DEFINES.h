@@ -6,7 +6,6 @@
 #define ESP32SPEAKERS_DEFINES_H
 
 #endif //ESP32SPEAKERS_DEFINES_H
-#include <SharedVariables.h>
 
 const float MAX_LINEAR_VOLUME = 30;
 const float MIN_LINEAR_VOLUME = 1;
@@ -21,7 +20,7 @@ const float MIN_DB_VOLUME = -30.0;
 #define START_SUB_VOLUME 30
 #define START_MUTE 0
 #define START_SOURCE 0
-#define DEBUG_DEBOUNCE 30000
+#define DEBOUNCE_DELAY 30000
 
 
 

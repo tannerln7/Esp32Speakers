@@ -1,15 +1,19 @@
 #include <WString.h>
-#include <ArduinoJson.h>
 #include "esp_heap_caps.h"
 #include "AsyncWebSocket.h"
-#include "SharedVariables.h"
+#include "BluetoothA2DPSink.h"
+
+#pragma once
+
+const uint32_t delay_time = 2000;
+extern BluetoothA2DPSink a2dp_sink;
 
 struct AudioPacket {
     uint8_t data[4096];
     size_t size;
     bool isValid;
     uint timestamp;
-    uint playAtTimestamp;
+    __attribute__((unused)) uint playAtTimestamp;
     AudioPacket() : data{0}, size(0), timestamp(0), isValid(false), playAtTimestamp(0) {}
 };
 
@@ -89,6 +93,7 @@ private:
     SemaphoreHandle_t buffer_mutex;
 };
 
+extern AudioBuffer* audioBuffer;
 
 void handleBufferOverflow() {
     // This is just a placeholder. You could reset the buffer, log the event, etc.
@@ -97,25 +102,30 @@ void handleBufferOverflow() {
 
 // Updated processFullBuffer function to handle double buffering
 void processFullBuffer(){
-    extern AudioBuffer *audioBuffer;
+    extern AsyncWebSocket webserv;
     AudioPacket packet = audioBuffer->packetize();
     if (packet.isValid) {
         // Send the binary data directly via WebSocket
         webserv.binaryAll(packet.data, packet.size);
         Serial.println("Buffer processed and sent as binary WebSocket frame.");
     }
-    audioBuffer.clear();  // Clear the buffer for the next data
+    audioBuffer->clear();  // Clear the buffer for the next data
 }
 
-void read_data_stream(const uint8_t *data, uint32_t length) {
+void read_data_stream(const uint8_t *data, uint32_t length){
     // Add incoming audio data to the buffer
-    if (!audioBuffer.addData(data, length)) {
+    if (!audioBuffer->addData(data, length)) {
         handleBufferOverflow();
         return;
     }
 
     // Check if the buffer is full and ready for packetization
-    if (audioBuffer.isFull()) {
+    if (audioBuffer->isFull()) {
         processFullBuffer();
     }
+}
+
+void bluetoothSetup() {
+    a2dp_sink.start("MyMusic");
+    a2dp_sink.set_raw_stream_reader(read_data_stream);
 }

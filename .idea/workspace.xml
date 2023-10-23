@@ -14,39 +14,33 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fd58d8ef-2135-42cc-98fd-0316cba02f47" name="Changes" comment="commit">
-      <change afterPath="$PROJECT_DIR$/.pio/libdeps/Controller/integrity.dat" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Docker/Acks.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/include/BufferHandle.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/include/BufferHandle.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/include/DEFINES.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/include/Debug.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/include/Debug.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/include/Handlers.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/include/Handlers.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/include/INCLUDE.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/include/IR.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/include/IR.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/include/Loops.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/include/Loops.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/include/Message.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/include/Message.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/include/SharedVariables.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/include/VariableInit.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/include/VariableInit.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="fd58d8ef-2135-42cc-98fd-0316cba02f47" name="Changes" comment="Major Changes">
+      <change afterPath="$PROJECT_DIR$/.pio/libdeps/Controller/ESP32-A2DP" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Left/idedata.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.pio/build/project.checksum" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/project.checksum" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Controller/integrity.dat" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/ESP32-A2DP" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/Left/ESP32-A2DP" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/integrity.dat" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/Left/integrity.dat" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/AudioBuffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/AudioBuffer.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/platformio.ini" beforeDir="false" afterPath="$PROJECT_DIR$/platformio.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/include/README" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/README" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/lib/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/include/AudioBuffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/AudioBuffer.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/include/BufferHandle.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/include/BufferHandle.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/include/DEFINES.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/DEFINES.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/include/Debug.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Debug.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/include/Debug.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Debug.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/include/Handlers.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Handlers.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/include/Handlers.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Handlers.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/include/INCLUDE.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/INCLUDE.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/include/IR.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/include/IR.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/include/Loops.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Loops.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/include/Loops.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Loops.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/include/Message.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Message.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/include/Message.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Message.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/include/SharedVariables.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/SharedVariables.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/include/VariableInit.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/include/VariableInit.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/src/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Left/src/1_VolumeLeft.ino" beforeDir="false" afterPath="$PROJECT_DIR$/src/Left/src/1_VolumeLeft.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Right/src/1_VolumeRight.ino" beforeDir="false" afterPath="$PROJECT_DIR$/src/Right/src/1_VolumeRight.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Left/src/1_VolumeLeft.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Left/src/1_VolumeLeft.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -229,7 +223,7 @@
       <workItem from="1697564815325" duration="2862000" />
       <workItem from="1697669790394" duration="22000" />
       <workItem from="1697670682256" duration="28651000" />
-      <workItem from="1697926812313" duration="42636000" />
+      <workItem from="1697926812313" duration="57516000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -255,7 +249,15 @@
       <option name="project" value="LOCAL" />
       <updated>1697434734082</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Major Changes">
+      <option name="closed" value="true" />
+      <created>1698007956904</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1698007956904</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -278,6 +280,7 @@
       <path value="$PROJECT_DIR$" />
     </ignored-roots>
     <MESSAGE value="commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="commit" />
+    <MESSAGE value="Major Changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Major Changes" />
   </component>
 </project>

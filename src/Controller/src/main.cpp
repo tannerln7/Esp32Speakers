@@ -1,23 +1,26 @@
 #include "INCLUDE.h"
-
+#include "Loops.h"
+#include "AudioBuffer.h"
 
 AsyncWebServer server(WEBSOCKET_PORT);
 AsyncWebSocket webserv("/audio");
-AudioBuffer *audioBuffer = nullptr;
 BluetoothA2DPSink a2dp_sink;
 IRrecv irrecv(IR_RECEIVE_PIN);
 decode_results results;
+AudioBuffer *audioBuffer = nullptr;
 
 
 void setup() {
     Serial.begin(115200);
-    bufferSetup();
+    if (esp_spiram_is_initialized()) {
+        audioBuffer = new AudioBuffer(10);
+        Serial.println("SPIRAM initialized");
+    }else Serial.println("SPIRAM not initialized");
     wifiSetup();
     bluetoothSetup();
     irSetup();
     webServerSetup();
     webSocketSetup();
-    initializeVariables();
 }
 
 void loop() {

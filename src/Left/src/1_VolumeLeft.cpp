@@ -2,7 +2,7 @@
 #include <SigmaDSP.h>
 #include <painlessMesh.h>
 #include "SigmaDSP_parameters.h"
-#include <../lib/AudioBuffer.h>
+
 #include <../lib/DSPEEPROM.h>
 
 #define   MESH_PREFIX     "LivingRoom"

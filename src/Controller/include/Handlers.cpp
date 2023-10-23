@@ -2,8 +2,34 @@
 // Created by Tanner on 10/22/2023.
 //
 
-#include "Message.h"
-#include "DEFINES.h"
+#include <Handlers.h>
+
+
+
+
+float currentLinearVolume = START_VOLUME;
+float currentVolumeDb = mapLinearToDb(START_VOLUME);
+float currentLinearSubVolume = START_SUB_VOLUME;
+float currentSubVolumeDb = mapLinearToDb(START_SUB_VOLUME);
+int muteState = START_MUTE;
+int currentSource = START_SOURCE;
+String lastMessageLeft = "";
+String lastMessageRight = "";
+unsigned long lastSendTimeLeft = 0;
+unsigned long lastSendTimeRight = 0;
+int retryCountLeft = 0;
+int retryCountRight = 0;
+uint32_t myID = 0;
+uint32_t leftId = 0;
+uint32_t rightId = 0;
+bool leftAck = false;
+bool rightAck = false;
+bool leftTime = false;
+bool rightTime = false;
+bool leftInit = false;
+bool rightInit = false;
+const unsigned long debounceDelay = DEBOUNCE_DELAY;
+
 
 
 float mapLinearToDb(float linearVolume) {
@@ -81,14 +107,14 @@ void handleInit(const uint32_t &from, const String &command) {
     if (command.equals("Left") && !leftInit) {
         leftId = from;
         leftInit = true;
-        ws.text(leftId,
+        webserv.text(leftId,
                 "Ack:" + String(currentVolumeDb) + ":" + String(currentSubVolumeDb) + ":" + String(muteState) +
                 ":" + String(currentSource));
         Serial.println("Left Init complete!");
     } else if (command.equals("Right") && !rightInit) {
         rightId = from;
         rightInit = true;
-        ws.text(rightId,
+        webserv.text(rightId,
                 "Ack:" + String(currentVolumeDb) + ":" + String(currentSubVolumeDb) + ":" + String(muteState) +
                 ":" + String(currentSource));
         Serial.println("Right Init complete!");
@@ -98,10 +124,10 @@ void handleInit(const uint32_t &from, const String &command) {
 void handleHeartbeat(uint32_t from, const String &value1, const String &value2, const String &value3, const String &value4) {
     if (value1.equals(String(currentVolumeDb)) && value2.equals(String(currentSubVolumeDb)) &&
         value3.equals(String(muteState)) && value4.equals(String(currentSource))) {
-        ws.text(from, "heartBeatGOOD");
+        webserv.text(from, "heartBeatGOOD");
         Serial.println(String(from) + ": Heartbeat GOOD");
     } else {
-        ws.text(leftId, "heartBeatBAD:" + String(currentVolumeDb) + ":" + String(currentSubVolumeDb) + ":" +
+        webserv.text(leftId, "heartBeatBAD:" + String(currentVolumeDb) + ":" + String(currentSubVolumeDb) + ":" +
                         String(muteState) + ":" + String(currentSource));
         Serial.println(String(from) + ": Heartbeat BAD");
         Serial.println(String(currentVolumeDb) + ":" + String(currentSubVolumeDb) + ":" + String(muteState) + ":" +
@@ -182,4 +208,142 @@ void onWsEvent(AsyncWebSocket *serverName, AsyncWebSocketClient *client, AwsEven
     } else if (type == WS_EVT_DATA) {
         handleCallback(client->id(), receivedMsg);
     }
+}
+
+void webSocketSetup() {
+    webserv.onEvent(onWsEvent);
+}
+
+void sendCommandToClient(const String &command, const String &value) {
+
+    String message = command + ":" + value;
+    webserv.textAll(message);
+    lastMessageLeft = message;
+    lastMessageRight = message;
+    lastSendTimeLeft = millis();
+    lastSendTimeRight = millis();
+    retryCountLeft = 0;
+    retryCountRight = 0;
+}
+
+extern IRrecv irrecv;
+extern decode_results results;
+
+const uint32_t volumeUpCode = 0xF7B847;
+const uint32_t volumeDownCode = 0xF758A7;
+const uint32_t muteCode = 0xF7C03F;
+const uint32_t subUpCode = 0xF738C7;
+const uint32_t subDownCode = 0xF77887;
+const uint32_t sourceCode = 0xF728D7;
+const uint64_t repeatCode = 0xFFFFFFFFFFFFFF;
+
+unsigned long lastIRReceivedTime = 0;
+long lastOperation = 0;
+
+void handleIRCode(uint32_t code) {
+    Serial.println(code, HEX);
+    switch (code) {
+        case volumeUpCode:
+            if (currentLinearVolume < MAX_LINEAR_VOLUME) {
+                currentLinearVolume++;
+                volume(currentLinearVolume);
+                Serial.println("Volume Up: " + String(currentLinearVolume));
+            } else {
+                volume(currentLinearVolume);
+                Serial.println("Volume already at max.");
+            }
+            break;
+        case volumeDownCode:
+            if (currentLinearVolume > MIN_LINEAR_VOLUME) {
+                currentLinearVolume--;
+                volume(currentLinearVolume);
+                Serial.println("Volume Down: " + String(currentLinearVolume));
+            } else {
+                volume(currentLinearVolume);
+                Serial.println("Volume already at min");
+            }
+            break;
+        case muteCode:
+            if (muteState == 0) {
+                mute(1);
+                muteState = 1;
+                Serial.println("Mute ON");
+            } else {
+                mute(0);
+                muteState = 0;
+                Serial.println("Mute OFF");
+            }
+            break;
+        case subUpCode:
+            if (currentLinearSubVolume < MAX_LINEAR_VOLUME) {
+                currentLinearSubVolume++;
+                sub(currentLinearSubVolume);
+                Serial.println("Sub Volume Up: " + String(currentLinearSubVolume));
+            } else {
+                sub(currentLinearSubVolume);
+                Serial.println("Sub Volume already at max");
+            }
+            break;
+        case subDownCode:
+            if (currentLinearSubVolume > MIN_LINEAR_VOLUME) {
+                currentLinearSubVolume--;
+                sub(currentLinearSubVolume);
+                Serial.println("Sub Volume Down: " + String(currentLinearSubVolume));
+            } else {
+                sub(currentLinearSubVolume);
+                Serial.println("Sub volume already at min");
+            }
+            break;
+        case sourceCode:
+            if (currentSource == 1) {
+                source(2);
+                Serial.println("Changed to source 2 (Line in)");
+            } else if (currentSource == 2) {
+                source(1);
+                Serial.println("Changed to source 1 (Optical)");
+            }
+            break;
+        default:
+            Serial.println("Unknown Code");
+            break;
+    }
+}
+
+[[noreturn]] void IRReceiverTask(void * pvParameters) {
+    // Initialize your IR receiver here
+    while (true) {
+        if (irrecv.decode(&results)) {
+            unsigned long currentIRReceivedTime = millis();
+            // If it's a repeat code, replay the last operation
+            if (results.value == repeatCode && lastOperation != 0) {
+                if (currentIRReceivedTime - lastIRReceivedTime > debounceDelay) {
+                    handleIRCode(lastOperation);
+                    Serial.println("Repeat Code" + String(lastOperation));
+                }
+            } else {
+                // If it's not a repeat code and enough time has passed (debouncing)
+                if (currentIRReceivedTime - lastIRReceivedTime > debounceDelay) {
+                    lastOperation = (long) results.value;
+                    handleIRCode(results.value);
+                    Serial.println(results.value, HEX);
+                }
+            }
+            lastIRReceivedTime = currentIRReceivedTime;
+            irrecv.resume();
+        }
+        // Use delay to free up the core for other tasks
+        vTaskDelay(10 / portTICK_PERIOD_MS);
+    }
+}
+
+void irSetup() {
+    xTaskCreatePinnedToCore(
+            IRReceiverTask,      /* Task function */
+            "IRReceiverTask",    /* Task name */
+            2000,               /* Stack size */
+            nullptr,                /* Parameters */
+            1,                   /* Priority */
+            nullptr,                /* Task handle (if you want to reference it later, otherwise NULL) */
+            1                    /* Core you want to run the task on, 0 or 1. 1 for the second core */
+    );
 }

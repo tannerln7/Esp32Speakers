@@ -2,17 +2,21 @@
 // Created by Tanner on 10/22/2023.
 //
 
-#include "INCLUDE.h"
-#include "SharedVariables.h"
+
+#include <Loops.h>
+
+unsigned long lastLeftInitTime = 0;
+unsigned long lastRightInitTime = 0;
+const unsigned long initDebounce = 15000;
 
 void ackCheck(){
         if (!leftAck && millis() - lastSendTimeLeft > 500 && retryCountLeft < 5) {
-            ws.text(leftId, lastMessageLeft);
+            webserv.text(leftId, lastMessageLeft);
             lastSendTimeLeft = millis();
             retryCountLeft++;
         }
         if (!rightAck && millis() - lastSendTimeRight > 500 && retryCountRight < 5) {
-            ws.text(rightId, lastMessageRight);
+            webserv.text(rightId, lastMessageRight);
             lastSendTimeRight = millis();
             retryCountRight++;
         }
@@ -47,38 +51,12 @@ void wifiSetup() {
     }
 }
 
-void bluetoothSetup() {
-    a2dp_sink.start("MyMusic");
-    a2dp_sink.set_stream_reader(read_data_stream, false);
-}
-
-void irSetup() {
-    xTaskCreatePinnedToCore(
-            IRReceiverTask,      /* Task function */
-            "IRReceiverTask",    /* Task name */
-            2000,               /* Stack size */
-            nullptr,                /* Parameters */
-            1,                   /* Priority */
-            nullptr,                /* Task handle (if you want to reference it later, otherwise NULL) */
-            1                    /* Core you want to run the task on, 0 or 1. 1 for the second core */
-    );
-}
 
 void webServerSetup() {
-    server.addHandler(&ws);
+    server.addHandler(&webserv);
     server.onNotFound([](AsyncWebServerRequest *request) {
         request->send(404);
     });
     server.begin();
 }
 
-void webSocketSetup() {
-    ws.onEvent(onWsEvent);
-}
-
-void bufferSetup() {
-    if (esp_spiram_is_initialized()) {
-        audioBuffer = new AudioBuffer(10);
-        Serial.println("SPIRAM initialized");
-    }else Serial.println("SPIRAM not initialized");
-}

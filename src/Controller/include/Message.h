@@ -9,13 +9,13 @@
 
 #include <map>
 #include "AsyncWebSocket.h"
-#include <Handlers.h>
+#include <SharedVariables.h>
 
 
-void sendCommandToClient(const String &command, const String &value);
-void sendToAll(const String &data);
+__attribute__((unused)) void sendToAll(const String &data);
 void sendMessage();
-void onMessage(const AsyncWebSocketMessage& message);
+
+__attribute__((unused)) void onMessage(const AsyncWebSocketMessage& message);
 void onConnection(AsyncWebSocketClient& client, const String& message);
 void onDisconnection();
 void nodeTimeAdjustedCallback(int32_t offset);
