@@ -29,5 +29,5 @@ void onWsEvent(AsyncWebSocket *server, AsyncWebSocketClient *client, AwsEventTyp
 void sendCommandToClient(const String &command, const String &value);
 
 [[noreturn]] void IRReceiverTask(void * pvParameters);
-void handleIRCode(uint32_t code);
+void handleIRCode(unsigned long code);
 void irSetup();

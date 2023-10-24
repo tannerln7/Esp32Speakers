@@ -13,7 +13,7 @@ const float MAX_DB_VOLUME = 0.0;
 const float MIN_DB_VOLUME = -30.0;
 
 
-#define IR_RECEIVE_PIN 26
+#define IR_RECEIVE_PIN 22
 #define WEBSOCKET_PORT 5555
 #define TIME_TOLERANCE 20
 #define START_VOLUME 20
