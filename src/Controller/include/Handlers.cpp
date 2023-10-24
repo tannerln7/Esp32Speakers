@@ -212,6 +212,8 @@ void onWsEvent(AsyncWebSocket *serverName, AsyncWebSocketClient *client, AwsEven
 
 void webSocketSetup() {
     webserv.onEvent(onWsEvent);
+    server.addHandler(&webserv);
+    Serial.println("Websocket Setup Complete");
 }
 
 void sendCommandToClient(const String &command, const String &value) {
@@ -229,18 +231,18 @@ void sendCommandToClient(const String &command, const String &value) {
 extern IRrecv irrecv;
 extern decode_results results;
 
-const uint32_t volumeUpCode = 0xF7B847;
-const uint32_t volumeDownCode = 0xF758A7;
-const uint32_t muteCode = 0xF7C03F;
-const uint32_t subUpCode = 0xF738C7;
-const uint32_t subDownCode = 0xF77887;
-const uint32_t sourceCode = 0xF728D7;
-const uint64_t repeatCode = 0xFFFFFFFFFFFFFF;
+const unsigned long volumeUpCode = 0xF7B847;
+const unsigned long volumeDownCode = 0xF758A7;
+const unsigned long muteCode = 0xF7C03F;
+const unsigned long subUpCode = 0xF738C7;
+const unsigned long subDownCode = 0xF77887;
+const unsigned long sourceCode = 0xF728D7;
+const unsigned long long repeatCode = 0xFFFFFFFFFFFFFF;
 
 unsigned long lastIRReceivedTime = 0;
 long lastOperation = 0;
 
-void handleIRCode(uint32_t code) {
+void handleIRCode(unsigned long code) {
     Serial.println(code, HEX);
     switch (code) {
         case volumeUpCode:
@@ -346,4 +348,5 @@ void irSetup() {
             nullptr,                /* Task handle (if you want to reference it later, otherwise NULL) */
             1                    /* Core you want to run the task on, 0 or 1. 1 for the second core */
     );
+    Serial.println("IR Setup Complete");
 }

@@ -14,33 +14,18 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fd58d8ef-2135-42cc-98fd-0316cba02f47" name="Changes" comment="Major Changes">
-      <change afterPath="$PROJECT_DIR$/.pio/libdeps/Controller/ESP32-A2DP" afterDir="false" />
+    <list default="true" id="fd58d8ef-2135-42cc-98fd-0316cba02f47" name="Changes" comment="The Controller/main.cpp builds now. Too many bugs to list still">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.pio/build/project.checksum" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/project.checksum" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Controller/integrity.dat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Controller/ESP32-A2DP" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/Controller/ESP32-A2DP" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/ESP32-A2DP" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/Left/ESP32-A2DP" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/platformio.ini" beforeDir="false" afterPath="$PROJECT_DIR$/platformio.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/include/AudioBuffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/AudioBuffer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/include/BufferHandle.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/include/BufferHandle.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/include/DEFINES.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/DEFINES.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/include/Debug.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Debug.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/include/Debug.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Debug.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/include/Handlers.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Handlers.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/include/Handlers.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Handlers.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/include/INCLUDE.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/INCLUDE.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/include/IR.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/include/IR.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/include/Loops.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Loops.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/include/Loops.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Loops.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/include/Message.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Message.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/include/Message.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Message.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/include/SharedVariables.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/SharedVariables.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/include/VariableInit.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/include/VariableInit.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/src/main.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Left/src/1_VolumeLeft.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Left/src/1_VolumeLeft.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +117,7 @@
     </option>
   </component>
   <component name="ProblemsViewState">
-    <option name="selectedTabId" value="ProjectErrors" />
+    <option name="selectedTabId" value="CurrentFile" />
   </component>
   <component name="ProjectApplicationVersion">
     <option name="ide" value="CLion" />
@@ -150,29 +135,29 @@
     <option name="showLibraryContents" value="true" />
     <option name="showScratchesAndConsoles" value="false" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.cidr.known.project.marker": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "cf.advertisement.text.has.clang-format": "true",
-    "cf.first.check.clang-format": "false",
-    "cidr.known.project.marker": "true",
-    "com.jetbrains.cidr.cpp.cmake.workspace.CMakeCacheInvalidator.marker": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true",
-    "last_opened_file_path": "C:/Users/tanne/Documents/PlatformIO/Projects/esp32Speakers/src/Controller/lib",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.customizations",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;cf.advertisement.text.has.clang-format&quot;: &quot;true&quot;,
+    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
+    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
+    &quot;com.jetbrains.cidr.cpp.cmake.workspace.CMakeCacheInvalidator.marker&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/tanne/Documents/PlatformIO/Projects/esp32Speakers/src/Controller/lib&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.customizations&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\tanne\Documents\PlatformIO\Projects\esp32Speakers\src\Controller\lib" />
@@ -189,9 +174,9 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
     <configuration name="PlatformIO" type="platformio" factoryName="PlatformIO Debug" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="esp32Speakers" TARGET_NAME="PlatformIO" CONFIG_NAME="PlatformIO">
@@ -223,7 +208,8 @@
       <workItem from="1697564815325" duration="2862000" />
       <workItem from="1697669790394" duration="22000" />
       <workItem from="1697670682256" duration="28651000" />
-      <workItem from="1697926812313" duration="57516000" />
+      <workItem from="1697926812313" duration="65790000" />
+      <workItem from="1698155015161" duration="457000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -257,7 +243,15 @@
       <option name="project" value="LOCAL" />
       <updated>1698007956904</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="The Controller/main.cpp builds now. Too many bugs to list still">
+      <option name="closed" value="true" />
+      <created>1698047293871</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1698047293871</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -281,6 +275,7 @@
     </ignored-roots>
     <MESSAGE value="commit" />
     <MESSAGE value="Major Changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Major Changes" />
+    <MESSAGE value="The Controller/main.cpp builds now. Too many bugs to list still" />
+    <option name="LAST_COMMIT_MESSAGE" value="The Controller/main.cpp builds now. Too many bugs to list still" />
   </component>
 </project>

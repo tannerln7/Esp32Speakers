@@ -44,11 +44,26 @@ void initDebug(){
 }
 
 void wifiSetup() {
-    WiFi.mode(WIFI_STA);
-    WiFi.begin("LivingRoom", "!Password!");
+    Serial.begin(115200);
+    delay(10);
+    const char* ssid = "ATT SUX";
+    const char* password = "peanutapple42";
+    Serial.println("\nConnecting to Wi-Fi...");
+
+    WiFi.scanNetworks();
+
+    WiFi.mode(WIFI_STA); // Set mode to station to connect to the router
+    WiFi.begin(ssid, password); // Connect to Wi-Fi
+
     while (WiFi.status() != WL_CONNECTED) {
         delay(500);
+        Serial.print(".");
     }
+
+    Serial.println("\nConnected to Wi-Fi!");
+    Serial.print("IP Address: ");
+    Serial.println(WiFi.localIP());
+    Serial.println("Wifi Setup Complete");
 }
 
 
@@ -58,5 +73,6 @@ void webServerSetup() {
         request->send(404);
     });
     server.begin();
+    Serial.println("Web Server Started");
 }
 
