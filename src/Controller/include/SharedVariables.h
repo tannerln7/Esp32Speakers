@@ -11,6 +11,7 @@
 
 #endif //ESP32SPEAKERS_SHAREDVARIABLES_H
 
+//TODO: Clean this mess up
 extern AsyncWebServer server;
 extern AsyncWebSocket webserv;
 

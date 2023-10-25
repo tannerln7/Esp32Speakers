@@ -6,7 +6,7 @@
 unsigned long currentMillis = millis();
 unsigned long lastPrintTime = 0;
 const unsigned long DEBOUNCE_DELAY = 3000;
-
+//TODO Debug why this isnt printing. Probably more watchdog issues.
 void currentHeap() {
 
     if (currentMillis - lastPrintTime >= DEBOUNCE_DELAY) {
