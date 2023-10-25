@@ -24,7 +24,8 @@ void setup() {
     //webSocketSetup();
     irrecv.enableIRIn();
 }
-
+//TODO Figure out why IR receiver is not updating.
+//Watchdog issue? Probably needs a delay in BT or WIFI
 void loop() {
 //Serial read for restart
     if (Serial.available()) {
