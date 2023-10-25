@@ -1,0 +1,25 @@
+- name: todo-issue
+  # You may pin to the exact commit or the version.
+  # uses: DerJuulsn/todo-issue@3c0b9bf8277455978dc4907155f430925e8607df
+  uses: DerJuulsn/todo-issue@v1.1.4
+  with:
+    # List of keywords for comments to be added which starts with one of these words.
+    keywords: # optional, default is TODO
+    # List of keywords for comments which starts with one of these words.
+    bodyKeywords: # optional, default is 
+    # Boolean or list of assignees which should be added to the new created issue. If true the commiter of the change will be added
+    autoAssign: # optional
+    # Regex which defines which paths to exclude (e.g. '^(src/someSubFolder/|anotherParentFolder/|LICENSE.txt)')
+    excludePattern: # optional
+    # Boolean which sets whether the tags should equal the keywords and bodytags list in terms of case sensitivity. Defaults to true
+    caseSensitive: false
+    # Boolean or a list of labels which should be added on creating a new issue. Defaults to 'todo :spiral_notepad:'
+    label: TODO
+    # false or max number of last changed lines which should be previewed in a issue. Defaults to 5
+    blobLines: 5
+    # max number of last changed lines before the first comment line which should be previewed in a issue. Defaults to 0
+    blobLinesBefore: 5
+    # false or number in percent of similarity which should be used for merging issues on creation. Defaults to 80
+    titleSimilarity: # optional
+    # Boolean whether a issue should be reopened if it was already closed, but the title is similar.
+    reopenClosed: # optional
