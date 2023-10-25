@@ -24,8 +24,7 @@ void setup() {
     //webSocketSetup();
     irrecv.enableIRIn();
 }
-//TODO Figure out why IR receiver is not updating.
-//Watchdog issue? Probably needs a delay in BT or WIFI
+
 void loop() {
 //Serial read for restart
     if (Serial.available()) {
@@ -34,7 +33,9 @@ void loop() {
             ESP.restart();
         }
     }
-
+//TODO Figure out why IR receiver is not updating.
+//Watchdog issue? Probably needs a delay in BT or WIFI. Maybe seperate cores?
+//REALLY ANNOYING
     if (irrecv.decode(&results)) {
         Serial.println(results.value, HEX);
         handleIRCode(long(results.value));
