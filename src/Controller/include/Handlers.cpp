@@ -4,9 +4,6 @@
 
 #include <Handlers.h>
 
-
-
-
 float currentLinearVolume = START_VOLUME;
 float currentVolumeDb = mapLinearToDb(START_VOLUME);
 float currentLinearSubVolume = START_SUB_VOLUME;
@@ -19,18 +16,18 @@ unsigned long lastSendTimeLeft = 0;
 unsigned long lastSendTimeRight = 0;
 int retryCountLeft = 0;
 int retryCountRight = 0;
-uint32_t myID = 0;
 uint32_t leftId = 0;
 uint32_t rightId = 0;
 bool leftAck = false;
 bool rightAck = false;
-bool leftTime = false;
-bool rightTime = false;
 bool leftInit = false;
 bool rightInit = false;
-const unsigned long debounceDelay = DEBOUNCE_DELAY;
+bool recheck = true;
+bool leftTime;
+bool rightTime;
 
-
+extern AsyncWebServer server;
+extern AsyncWebSocket webserv;
 
 float mapLinearToDb(float linearVolume) {
     return (linearVolume - MIN_LINEAR_VOLUME) * (MAX_DB_VOLUME - MIN_DB_VOLUME) /
@@ -39,9 +36,10 @@ float mapLinearToDb(float linearVolume) {
 
 
 void handleCallback(const uint32_t &from, const String &msg) {
-    String command, value1, value2, value3, value4, value5, value6, value7;
-    parseIncomingMessage(msg, command, value1, value2, value3, value4, value5, value6, value7);
-    Serial.println("COMMAND VALUES " + command + " " + value1 + " " + value2 + " " + value3 + " " + value4);
+    String command;
+    std::vector<String> values;
+    parseIncomingMessage(msg, command, values);
+
     std::map<String, float *> commandToVariable = {
             {"volumeACK",    &currentVolumeDb},
             {"subVolumeAck", &currentSubVolumeDb},
@@ -50,17 +48,19 @@ void handleCallback(const uint32_t &from, const String &msg) {
     };
 
     auto it = commandToVariable.find(command);
+
     if (it != commandToVariable.end()) {
         float *variableToPass = it->second;
-        float receivedValue = value1.toFloat();
+        float receivedValue = values[0].toFloat();
         handleAck(from, *variableToPass, receivedValue);
     } else if (command.equals("time")) {
-        handleTime(from, value1);
+        handleTime(from, values[0]);
     } else if (command.equals("init")) {
-        handleInit(from, value1);
-    }
-    else if (command.equals("heartBeat")) {
-        handleHeartbeat(from, value1, value2, value3, value4);
+        handleInit(from, values[0]);
+    } else if (command.equals("heartBeat")) {
+        handleHeartbeat(from, values);
+    } else {
+        Serial.println("Error: Unknown command");
     }
 }
 
@@ -121,7 +121,11 @@ void handleInit(const uint32_t &from, const String &command) {
     }
 }
 
-void handleHeartbeat(uint32_t from, const String &value1, const String &value2, const String &value3, const String &value4) {
+void handleHeartbeat(const uint32_t &from, const std::vector<String> &values) {
+    String value1 = !values.empty() ? values[0] : "";
+    String value2 = values.size() > 1 ? values[1] : "";
+    String value3 = values.size() > 2 ? values[2] : "";
+    String value4 = values.size() > 2 ? values[3] : "";
     if (value1.equals(String(currentVolumeDb)) && value2.equals(String(currentSubVolumeDb)) &&
         value3.equals(String(muteState)) && value4.equals(String(currentSource))) {
         webserv.text(from, "heartBeatGOOD");
@@ -136,16 +140,15 @@ void handleHeartbeat(uint32_t from, const String &value1, const String &value2, 
 }
 
 
-void parseIncomingMessage(const String &msg, String &command, String &value1, String &value2, String &value3, String &value4,
-                          String &value5, String &value6, String &value7) {
+void parseIncomingMessage(const String &msg, String &command, std::vector<String> &values) {
     command = getValue(msg, ':', 0);
-    value1 = getValue(msg, ':', 1);
-    value2 = getValue(msg, ':', 2);
-    value3 = getValue(msg, ':', 3);
-    value4 = getValue(msg, ':', 4);
-    value5 = getValue(msg, ':', 5);
-    value6 = getValue(msg, ':', 6);
-    value7 = getValue(msg, ':', 7);
+    int index = 1;
+    String value;
+
+    while ((value = getValue(msg, ':', index)) != "") {
+        values.push_back(value);
+        ++index;
+    }
 }
 //TODO:Replace implement WebSockets instead of sendCommandToClient
 
@@ -155,7 +158,7 @@ void volume(float newLinearVolume) {
     rightAck = false;
     sendCommandToClient("Volume", String(currentVolumeDb));
     currentLinearVolume = newLinearVolume;
-    Serial.print("Volume UP: ");
+    Serial.print("Sent Volume: ");
     Serial.println(String(currentVolumeDb) + "Db");
 }
 
@@ -165,6 +168,8 @@ void sub(float newLinearSubVolume) {
     rightAck = false;
     sendCommandToClient("Sub", String(currentSubVolumeDb));
     currentLinearSubVolume = newLinearSubVolume;
+    Serial.print("Sent Sub: ");
+    Serial.println(String(currentSubVolumeDb) + "Db");
 }
 
 void mute(int newMuteState) {
@@ -172,6 +177,8 @@ void mute(int newMuteState) {
     rightAck = false;
     sendCommandToClient("Mute", String(newMuteState));
     muteState = newMuteState;
+    Serial.print("Sent Mute: ");
+    Serial.println(String(muteState));
 }
 
 void source(int newSource) {
@@ -179,6 +186,8 @@ void source(int newSource) {
     rightAck = false;
     sendCommandToClient("Source", String(newSource));
     currentSource = newSource;
+    Serial.print("Sent Source: ");
+    Serial.println(String(currentSource));
 }
 
 String getValue(const String &data, char separator, int index) {
@@ -211,8 +220,8 @@ void onWsEvent(AsyncWebSocket *serverName, AsyncWebSocketClient *client, AwsEven
 }
 
 void webSocketSetup() {
-    webserv.onEvent(onWsEvent);
     server.addHandler(&webserv);
+    webserv.onEvent(onWsEvent);
     Serial.println("Websocket Setup Complete");
 }
 
@@ -228,125 +237,96 @@ void sendCommandToClient(const String &command, const String &value) {
     retryCountRight = 0;
 }
 
-extern IRrecv irrecv;
-extern decode_results results;
-
-const unsigned long volumeUpCode = 0xF7B847;
-const unsigned long volumeDownCode = 0xF758A7;
-const unsigned long muteCode = 0xF7C03F;
-const unsigned long subUpCode = 0xF738C7;
-const unsigned long subDownCode = 0xF77887;
-const unsigned long sourceCode = 0xF728D7;
-const unsigned long long repeatCode = 0xFFFFFFFFFFFFFF;
-
-unsigned long lastIRReceivedTime = 0;
-long lastOperation = 0;
+const unsigned long volumeUpCode = 0xE21DEF00;
+const unsigned long volumeDownCode = 0xE51AEF00;
+const unsigned long muteCode = 0xFC03EF00;
+const unsigned long subUpCode = 0xE31CEF00;
+const unsigned long subDownCode = 0xE11EEF00;
+const unsigned long sourceCode = 0xEB14EF00;
+const unsigned long repeatCode = 0;
+unsigned long lastIRCode = 0;
 
 void handleIRCode(unsigned long code) {
     Serial.println(code, HEX);
-    switch (code) {
-        case volumeUpCode:
-            if (currentLinearVolume < MAX_LINEAR_VOLUME) {
-                currentLinearVolume++;
-                volume(currentLinearVolume);
-                Serial.println("Volume Up: " + String(currentLinearVolume));
-            } else {
-                volume(currentLinearVolume);
-                Serial.println("Volume already at max.");
-            }
-            break;
-        case volumeDownCode:
-            if (currentLinearVolume > MIN_LINEAR_VOLUME) {
-                currentLinearVolume--;
-                volume(currentLinearVolume);
-                Serial.println("Volume Down: " + String(currentLinearVolume));
-            } else {
-                volume(currentLinearVolume);
-                Serial.println("Volume already at min");
-            }
-            break;
-        case muteCode:
-            if (muteState == 0) {
-                mute(1);
-                muteState = 1;
-                Serial.println("Mute ON");
-            } else {
-                mute(0);
-                muteState = 0;
-                Serial.println("Mute OFF");
-            }
-            break;
-        case subUpCode:
-            if (currentLinearSubVolume < MAX_LINEAR_VOLUME) {
-                currentLinearSubVolume++;
-                sub(currentLinearSubVolume);
-                Serial.println("Sub Volume Up: " + String(currentLinearSubVolume));
-            } else {
-                sub(currentLinearSubVolume);
-                Serial.println("Sub Volume already at max");
-            }
-            break;
-        case subDownCode:
-            if (currentLinearSubVolume > MIN_LINEAR_VOLUME) {
-                currentLinearSubVolume--;
-                sub(currentLinearSubVolume);
-                Serial.println("Sub Volume Down: " + String(currentLinearSubVolume));
-            } else {
-                sub(currentLinearSubVolume);
-                Serial.println("Sub volume already at min");
-            }
-            break;
-        case sourceCode:
-            if (currentSource == 1) {
-                source(2);
-                Serial.println("Changed to source 2 (Line in)");
-            } else if (currentSource == 2) {
-                source(1);
-                Serial.println("Changed to source 1 (Optical)");
-            }
-            break;
-        default:
-            Serial.println("Unknown Code");
-            break;
-    }
-}
-
-[[noreturn]] void IRReceiverTask(void * pvParameters) {
-    // Initialize your IR receiver here
-    while (true) {
-        if (irrecv.decode(&results)) {
-            unsigned long currentIRReceivedTime = millis();
-            // If it's a repeat code, replay the last operation
-            if (results.value == repeatCode && lastOperation != 0) {
-                if (currentIRReceivedTime - lastIRReceivedTime > debounceDelay) {
-                    handleIRCode(lastOperation);
-                    Serial.println("Repeat Code" + String(lastOperation));
+    do {
+        recheck = false;
+        switch (code) {
+            case volumeUpCode:
+                lastIRCode = code;
+                if (currentLinearVolume < MAX_LINEAR_VOLUME) {
+                    currentLinearVolume++;
+                    volume(currentLinearVolume);
+                    Serial.println("Volume Up: " + String(currentLinearVolume));
+                } else {
+                    volume(currentLinearVolume);
+                    Serial.println("Volume already at max.");
                 }
-            } else {
-                // If it's not a repeat code and enough time has passed (debouncing)
-                if (currentIRReceivedTime - lastIRReceivedTime > debounceDelay) {
-                    lastOperation = (long) results.value;
-                    handleIRCode(results.value);
-                    Serial.println(results.value, HEX);
+                break;
+            case volumeDownCode:
+                lastIRCode = code;
+                if (currentLinearVolume > MIN_LINEAR_VOLUME) {
+                    currentLinearVolume--;
+                    volume(currentLinearVolume);
+                    Serial.println("Volume Down: " + String(currentLinearVolume));
+                } else {
+                    volume(currentLinearVolume);
+                    Serial.println("Volume already at min");
                 }
-            }
-            lastIRReceivedTime = currentIRReceivedTime;
-            irrecv.resume();
+                break;
+            case muteCode:
+                lastIRCode = code;
+                if (muteState == 0) {
+                    mute(1);
+                    muteState = 1;
+                    Serial.println("Mute ON");
+                } else {
+                    mute(0);
+                    muteState = 0;
+                    Serial.println("Mute OFF");
+                }
+                break;
+            case subUpCode:
+                lastIRCode = code;
+                if (currentLinearSubVolume < MAX_LINEAR_VOLUME) {
+                    currentLinearSubVolume++;
+                    sub(currentLinearSubVolume);
+                    Serial.println("Sub Volume Up: " + String(currentLinearSubVolume));
+                } else {
+                    sub(currentLinearSubVolume);
+                    Serial.println("Sub Volume already at max");
+                }
+                break;
+            case subDownCode:
+                lastIRCode = code;
+                if (currentLinearSubVolume > MIN_LINEAR_VOLUME) {
+                    currentLinearSubVolume--;
+                    sub(currentLinearSubVolume);
+                    Serial.println("Sub Volume Down: " + String(currentLinearSubVolume));
+                } else {
+                    sub(currentLinearSubVolume);
+                    Serial.println("Sub volume already at min");
+                }
+                break;
+            case sourceCode:
+                lastIRCode = code;
+                if (currentSource == 1) {
+                    source(2);
+                    Serial.println("Changed to source 2 (Line in)");
+                } else if (currentSource == 2) {
+                    source(1);
+                    Serial.println("Changed to source 1 (Optical)");
+                }
+                break;
+            case repeatCode:
+                if (lastIRCode != 0) {
+                    code = lastIRCode;
+                    recheck = true;
+                }
+                Serial.println("Repeat Code:" + String(code, HEX));
+                break;
+            default:
+                Serial.println("Unknown Code");
+                break;
         }
-        // Use delay to free up the core for other tasks
-        vTaskDelay(10 / portTICK_PERIOD_MS);
-    }
-}
-
-void irSetup() {
-    xTaskCreatePinnedToCore(
-            IRReceiverTask,      /* Task function */
-            "IRReceiverTask",    /* Task name */
-            2000,               /* Stack size */
-            nullptr,                /* Parameters */
-            1,                   /* Priority */
-            nullptr,                /* Task handle (if you want to reference it later, otherwise NULL) */
-            1                    /* Core you want to run the task on, 0 or 1. 1 for the second core */
-    );
-    Serial.println("IR Setup Complete");
+    }while (recheck);
 }

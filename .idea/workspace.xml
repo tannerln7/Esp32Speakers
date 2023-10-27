@@ -15,17 +15,28 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd58d8ef-2135-42cc-98fd-0316cba02f47" name="Changes" comment="The Controller/main.cpp builds now. Too many bugs to list still">
+      <change afterPath="$PROJECT_DIR$/src/Controller/include/IRTask.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/include/IRTask.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Controller/include/PinDefinitionsAndMore.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.pio/build/project.checksum" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/project.checksum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.pio/libdeps/Controller/ESP32-A2DP" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/Controller/ESP32-A2DP" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/ESP32-A2DP" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/Left/ESP32-A2DP" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/platformio.ini" beforeDir="false" afterPath="$PROJECT_DIR$/platformio.ini" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/include/AudioBuffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/AudioBuffer.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/include/DEFINES.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/DEFINES.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/include/Debug.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Debug.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/include/Debug.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/include/Debug.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/include/Handlers.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Handlers.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/include/Handlers.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Handlers.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/include/INCLUDE.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/INCLUDE.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/include/Loops.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Loops.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/include/Loops.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Loops.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/include/Message.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Message.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/include/SharedVariables.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/SharedVariables.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/src/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Left/src/1_VolumeLeft.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Left/src/1_VolumeLeft.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Left/src/SigmaDSP_parameters.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Left/include/SigmaDSP_parameters.h" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -56,7 +67,7 @@
       </list>
     </option>
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Controller" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Left" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -166,11 +177,11 @@
       <recent name="C:\Users\tanne\Documents\PlatformIO\Projects\esp32Speakers\.pio\libdeps\Right" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\tanne\Documents\PlatformIO\Projects\esp32Speakers\src\Left\include" />
       <recent name="C:\Users\tanne\Documents\PlatformIO\Projects\esp32Speakers\Docker" />
       <recent name="C:\Users\tanne\Documents\PlatformIO\Projects\esp32Speakers\src\Controller\include" />
       <recent name="C:\Users\tanne\Documents\PlatformIO\Projects\esp32Speakers\src\Controller\lib" />
       <recent name="C:\Users\tanne\Documents\PlatformIO\Projects\esp32Speakers\lib" />
-      <recent name="C:\Users\tanne\Documents\PlatformIO\Projects\esp32Speakers\src\Left\lib" />
     </key>
   </component>
   <component name="RunManager">
@@ -209,7 +220,7 @@
       <workItem from="1697669790394" duration="22000" />
       <workItem from="1697670682256" duration="28651000" />
       <workItem from="1697926812313" duration="65790000" />
-      <workItem from="1698155015161" duration="457000" />
+      <workItem from="1698155015161" duration="33907000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -251,11 +262,25 @@
       <option name="project" value="LOCAL" />
       <updated>1698047293871</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="The Controller/main.cpp builds now. Too many bugs to list still">
+      <option name="closed" value="true" />
+      <created>1698155483128</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1698155483128</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="VCPKGProject">
+    <isAutomaticEditVcpkgJson value="false" />
+    <isAutomaticCheckingOnLaunch value="false" />
+    <isAutomaticFoundErrors value="true" />
+    <isAutomaticFoundErrors value="true" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">

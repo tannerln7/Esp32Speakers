@@ -1,6 +1,6 @@
 #include <Wire.h>
 #include <SigmaDSP.h>
-#include <painlessMesh.h>
+#include<EEPROM.h>
 #include "SigmaDSP_parameters.h"
 
 #include <../lib/DSPEEPROM.h>

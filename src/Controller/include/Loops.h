@@ -11,12 +11,12 @@
 #include "AsyncWebSocket.h"
 
 
-void ackCheck();
-void ackReset();
+void setupAck();
+
+[[noreturn]] void ackTask(void *pvParameters);
 void initDebug();
 void wifiSetup();
 void bluetoothSetup();
 void webServerSetup();
-void webSocketSetup();
 
 
