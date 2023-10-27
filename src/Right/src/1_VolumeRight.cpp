@@ -8,7 +8,7 @@
 #define   MESH_PREFIX     "LivingRoom"
 #define   MESH_PASSWORD   "PassworD1234"
 #define   MESH_PORT       5555
-
+//TODO enable direct write to DSP eeprom
 SigmaDSP* dsp;
 DSPEEPROM* ee;
 
@@ -46,7 +46,7 @@ void changeSource(int);
 
 
 Task taskSendMessage( TASK_SECOND * 1 , TASK_FOREVER, &sendMessage );
-
+//TODO refactor to websockets and multi file format
 void setup() {
     Serial.begin(115200);
     Wire.begin();  // Ensure Wire is initialized

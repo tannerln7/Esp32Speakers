@@ -22,7 +22,9 @@ struct AudioPacket {
     __attribute__((unused)) uint playAtTimestamp;
     AudioPacket() : data{0}, size(0), timestamp(0), isValid(false), playAtTimestamp(0) {}
 };
-
+//TODO Debug Audio buffer overflow
+//Buffer overflows before packets are sent and buffer cleared? 
+//Finish circular buffer
 class AudioBuffer {
 public:
     AudioBuffer() = default;

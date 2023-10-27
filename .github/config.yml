@@ -1,0 +1,7 @@
+todo:
+  keyword: ['@todo','TODO','//TODO']
+  bodyKeyword: ['@body','BODY','//BODY']
+  blobLines: "5"
+  caseSensitive: "false"
+  label: true, "TODO"
+  
