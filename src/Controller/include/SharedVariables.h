@@ -5,14 +5,13 @@
 
 #include <Arduino.h>
 #include <AsyncWebSocket.h>
+#include <freertos/FreeRTOS.h>
+#include <freertos/task.h>
 
 #ifndef ESP32SPEAKERS_SHAREDVARIABLES_H
 #define ESP32SPEAKERS_SHAREDVARIABLES_H
 
 #endif //ESP32SPEAKERS_SHAREDVARIABLES_H
-
-extern AsyncWebServer server;
-extern AsyncWebSocket webserv;
 
 //start-up DSP settings
 extern float currentLinearVolume;
@@ -42,3 +41,4 @@ extern String lastMessageRight;
 
 extern bool leftInit;
 extern bool rightInit;
+

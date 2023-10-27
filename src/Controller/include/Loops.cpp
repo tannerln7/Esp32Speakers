@@ -8,21 +8,35 @@
 unsigned long lastLeftInitTime = 0;
 unsigned long lastRightInitTime = 0;
 const unsigned long initDebounce = 15000;
+// Initialize the mutex semaphore
+extern AsyncWebServer server;
+extern AsyncWebSocket webserv;
 
-void ackCheck(){
+[[noreturn]] void ackTask(void *pvParameters) {
+    TickType_t xLastWakeTime;
+    const TickType_t xFrequency = pdMS_TO_TICKS(100); // Frequency in ms, adjust as needed
+
+    // Initialize the last wake time variable with the current time.
+    xLastWakeTime = xTaskGetTickCount();
+
+    while (true) {
+        // Wait for the next cycle.
+        vTaskDelayUntil(&xLastWakeTime, xFrequency);
+
+        // Perform ackCheck
         if (!leftAck && millis() - lastSendTimeLeft > 500 && retryCountLeft < 5) {
             webserv.text(leftId, lastMessageLeft);
             lastSendTimeLeft = millis();
             retryCountLeft++;
         }
+
         if (!rightAck && millis() - lastSendTimeRight > 500 && retryCountRight < 5) {
             webserv.text(rightId, lastMessageRight);
             lastSendTimeRight = millis();
             retryCountRight++;
         }
-}
 
-void ackReset(){
+        // Perform ackReset
         if (rightAck) {
             retryCountRight = 0;
         }
@@ -30,6 +44,27 @@ void ackReset(){
         if (leftAck) {
             retryCountLeft = 0;
         }
+    }
+}
+
+
+void setupAck() {
+    // Create the ackTask
+    BaseType_t taskCreated = xTaskCreate(
+            ackTask,          // Task function
+            "AckTask",        // A name for the task for debugging
+            2000,             // Stack size (in words, not bytes)
+            nullptr,             // Parameters to pass to the task function
+            1,                // Priority (0 is lowest, higher numbers are higher priority)
+            nullptr              // Task handle (not used in this example)
+    );
+
+    if (taskCreated != pdPASS) {
+        Serial.println("Failed to create ackTask");
+        // Take corrective action here
+    }else {
+        Serial.println("ackTask created successfully");
+    }
 }
 
 void initDebug(){
@@ -44,8 +79,6 @@ void initDebug(){
 }
 
 void wifiSetup() {
-    Serial.begin(115200);
-    delay(10);
     const char* ssid = "ATT SUX";
     const char* password = "peanutapple42";
     Serial.println("\nConnecting to Wi-Fi...");
@@ -68,7 +101,6 @@ void wifiSetup() {
 
 
 void webServerSetup() {
-    server.addHandler(&webserv);
     server.onNotFound([](AsyncWebServerRequest *request) {
         request->send(404);
     });

@@ -8,9 +8,6 @@
 #endif //ESP32SPEAKERS_INCLUDE_H
 
 #pragma once
-
-#include <IRrecv.h>
-#include <IRutils.h>
 #include "BluetoothA2DPSink.h"
 #include <ESPAsyncWebServer.h>
 #include <WiFi.h>
@@ -19,4 +16,3 @@
 #include "Message.h"
 #include "Handlers.h"
 #include "SharedVariables.h"
-#include <Debug.h>

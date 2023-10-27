@@ -3,7 +3,8 @@
 //
 
 #include "Message.h"
-
+extern AsyncWebSocket webserv;
+extern AsyncWebServer server;
 
 
 

@@ -1,28 +1,26 @@
 #include "INCLUDE.h"
 #include "Loops.h"
 #include "AudioBuffer.h"
+#include <Arduino.h>
+#include <IRTask.h>
 
-AsyncWebServer server(WEBSOCKET_PORT);
 AsyncWebSocket webserv("/audio");
+AsyncWebServer server(80);
 BluetoothA2DPSink a2dp_sink;
-IRrecv irrecv(IR_RECEIVE_PIN);
-decode_results results;
-AudioBuffer *audioBuffer = nullptr;
-unsigned long sentLast = 0;
-unsigned sendDelay = 10000;
+AudioBuffer audioBuffer;
+SemaphoreHandle_t ws_mutex;
+
 
 void setup() {
     Serial.begin(115200);
-//    if (esp_spiram_is_initialized()) {
-//        audioBuffer = new AudioBuffer(10);
-//        Serial.println("SPIRAM initialized");
-//    } else Serial.println("SPIRAM not initialized");
-    //wifiSetup();
+    //audioBuffer = AudioBuffer(10);
+    //ws_mutex = xSemaphoreCreateMutex();
+    wifiSetup();
+    webServerSetup();
+    webSocketSetup();
     //bluetoothSetup();
-    //irSetup();
-    //webServerSetup();
-    //webSocketSetup();
-    irrecv.enableIRIn();
+    irSetup();
+    setupAck();
 }
 
 void loop() {
@@ -33,16 +31,6 @@ void loop() {
             ESP.restart();
         }
     }
-
-    if (irrecv.decode(&results)) {
-        Serial.println(results.value, HEX);
-        handleIRCode(long(results.value));
-    }
-    if (millis() >= sentLast + sendDelay) {
-        sentLast = millis();
-        Serial.println("Still Looping");
-    }
-    irrecv.resume();
     //ackCheck();
     //ackReset();
     //initDebug();

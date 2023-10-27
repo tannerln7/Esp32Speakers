@@ -6,7 +6,13 @@
 #pragma once
 
 const uint32_t delay_time = 2000;
+
+void handleBufferOverflow();
+void processFullBuffer();
+void read_data_stream(const uint8_t *data, uint32_t length);
 extern BluetoothA2DPSink a2dp_sink;
+extern AsyncWebServer server;
+extern AsyncWebSocket webserv;
 
 struct AudioPacket {
     uint8_t data[4096];
@@ -19,6 +25,8 @@ struct AudioPacket {
 
 class AudioBuffer {
 public:
+    AudioBuffer() = default;
+
     explicit AudioBuffer(size_t numPackets) :
             capacity(numPackets * 4096),  // Change here
             head(0), tail(0), length(0), buffer(nullptr) {
@@ -93,7 +101,27 @@ private:
     SemaphoreHandle_t buffer_mutex;
 };
 
-extern AudioBuffer* audioBuffer;
+[[noreturn]] void BluetoothTask(void* pvParameters) {
+    esp_task_wdt_delete(nullptr);
+    a2dp_sink.start("MyMusic");
+    a2dp_sink.set_raw_stream_reader(read_data_stream);
+
+    // Initialize your audio buffer here...
+    AudioBuffer audioBuffer(10); // just an example size
+
+    while (true) {
+        if (audioBuffer.isFull()) {
+            processFullBuffer();  // Your function to process the buffer
+        }
+
+        // Some other logic here...
+
+        // Yielding the CPU for a bit
+        vTaskDelay(10 / portTICK_PERIOD_MS);
+    }
+}
+
+extern AudioBuffer audioBuffer;
 
 void handleBufferOverflow() {
     // This is just a placeholder. You could reset the buffer, log the event, etc.
@@ -102,30 +130,36 @@ void handleBufferOverflow() {
 
 // Updated processFullBuffer function to handle double buffering
 void processFullBuffer(){
-    extern AsyncWebSocket webserv;
-    AudioPacket packet = audioBuffer->packetize();
+    AudioPacket packet = audioBuffer.packetize();
     if (packet.isValid) {
         // Send the binary data directly via WebSocket
         webserv.binaryAll(packet.data, packet.size);
         Serial.println("Buffer processed and sent as binary WebSocket frame.");
     }
-    audioBuffer->clear();  // Clear the buffer for the next data
+    audioBuffer.clear();  // Clear the buffer for the next data
 }
 
 void read_data_stream(const uint8_t *data, uint32_t length){
     // Add incoming audio data to the buffer
-    if (!audioBuffer->addData(data, length)) {
+    if (!audioBuffer.addData(data, length)) {
         handleBufferOverflow();
         return;
     }
 
     // Check if the buffer is full and ready for packetization
-    if (audioBuffer->isFull()) {
+    if (audioBuffer.isFull()) {
         processFullBuffer();
     }
 }
 
-void bluetoothSetup() {
-    a2dp_sink.start("MyMusic");
-    a2dp_sink.set_raw_stream_reader(read_data_stream);
+void bluetoothSetup(){
+    xTaskCreatePinnedToCore(
+            BluetoothTask,      /* Task function */
+            "BluetoothTask",    /* Task name */
+            2000,               /* Stack size */
+            nullptr,                /* Parameters */
+            1,                   /* Priority */
+            nullptr,                /* Task handle (if you want to reference it later, otherwise NULL) */
+            1                    /* Core you want to run the task on, 0 or 1. 1 for the second core */
+    );
 }
