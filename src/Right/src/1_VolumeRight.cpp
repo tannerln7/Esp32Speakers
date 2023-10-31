@@ -9,8 +9,8 @@
 #define   MESH_PASSWORD   "PassworD1234"
 #define   MESH_PORT       5555
 //TODO enable direct write to DSP eeprom
-SigmaDSP* dsp;
-DSPEEPROM* ee;
+//SigmaDSP* dsp;
+//DSPEEPROM* ee;
 
 Scheduler userScheduler;
 painlessMesh mesh;

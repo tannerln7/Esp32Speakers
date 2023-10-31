@@ -1,5 +1,4 @@
-crankyoldgit/IRremoteESP8266@^2.8.6
-https://github.com/pschatzmann/ESP32-A2DP.git
+https://github.com/gilmaimon/ArduinoWebsockets.git
 SigmaDSP
-painlessmesh/painlessMesh@^1.5.0
-ottowinter/ESPAsyncWebServer-esphome@^3.1.0
+hash
+ArduinoJson@^6.17.3
