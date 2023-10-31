@@ -3,6 +3,7 @@
 //
 
 #include <Handlers.h>
+#include <ArduinoWebsockets.h>
 
 float currentLinearVolume = START_VOLUME;
 float currentVolumeDb = mapLinearToDb(START_VOLUME);
@@ -10,24 +11,13 @@ float currentLinearSubVolume = START_SUB_VOLUME;
 float currentSubVolumeDb = mapLinearToDb(START_SUB_VOLUME);
 int muteState = START_MUTE;
 int currentSource = START_SOURCE;
-String lastMessageLeft = "";
-String lastMessageRight = "";
-unsigned long lastSendTimeLeft = 0;
-unsigned long lastSendTimeRight = 0;
-int retryCountLeft = 0;
-int retryCountRight = 0;
-uint32_t leftId = 0;
-uint32_t rightId = 0;
-bool leftAck = false;
-bool rightAck = false;
-bool leftInit = false;
-bool rightInit = false;
 bool recheck = true;
-bool leftTime;
-bool rightTime;
 
-extern AsyncWebServer server;
-extern AsyncWebSocket webserv;
+using namespace websockets;
+
+extern WebsocketsServer wsServer;
+extern WebsocketsClient wsClient;
+
 
 float mapLinearToDb(float linearVolume) {
     return (linearVolume - MIN_LINEAR_VOLUME) * (MAX_DB_VOLUME - MIN_DB_VOLUME) /
@@ -35,7 +25,7 @@ float mapLinearToDb(float linearVolume) {
 }
 
 
-void handleCallback(const uint32_t &from, const String &msg) {
+void handleCallback(const String &msg) {
     String command;
     std::vector<String> values;
     parseIncomingMessage(msg, command, values);
@@ -52,14 +42,14 @@ void handleCallback(const uint32_t &from, const String &msg) {
     if (it != commandToVariable.end()) {
         float *variableToPass = it->second;
         float receivedValue = values[0].toFloat();
-        handleAck(from, *variableToPass, receivedValue);
+        handleAck(*variableToPass, receivedValue);
     } else if (command.equals("time")) {
-        handleTime(from, values[0]);
-    } else if (command.equals("init")) {
-        handleInit(from, values[0]);
+        handleTime(values[0]);
+    } else if (command.equals("Left") || command.equals("Right")) {
+        handleInit();
     } else if (command.equals("heartBeat")) {
-        handleHeartbeat(from, values);
-    } else {
+        handleHeartbeat(values);
+    }else {
         Serial.println("Error: Unknown command");
     }
 }
@@ -68,14 +58,14 @@ unsigned long abs_diff(unsigned long a, unsigned long b) {
     return (a > b) ? (a - b) : (b - a);
 }
 
-void handleAck(const uint32_t clientID, const float &currentValue, const float &receivedValue) {
+void handleAck(const float &currentValue, const float &receivedValue) {
     bool isSame = floatEqual(currentValue, receivedValue);
+    if (isSame) {
 
-    if (clientID == leftId){
-        leftAck = isSame;
-    } else if (clientID == rightId) {
-        rightAck = isSame;
+    } else {
+        Serial.println("Error: " + String(currentValue) + " does not equal " + String(receivedValue));
     }
+    //TODO: figure this out....
 }
 
 bool floatEqual(float a, float b) {
@@ -84,56 +74,40 @@ bool floatEqual(float a, float b) {
 }
 
 
-void handleTime(uint32_t from, const String &value1) {
+void handleTime(const String &value1) {
     unsigned long currentTimeMillis = millis();
     unsigned long receivedTime = value1.toInt();
     bool isTimeWithinTolerance = abs_diff(currentTimeMillis, receivedTime) <= TIME_TOLERANCE;
     String currentTime = String(currentTimeMillis);
 
-    if (from == leftId) {
-        leftTime = isTimeWithinTolerance;
-    } else if (from == rightId) {
-        rightTime = isTimeWithinTolerance;
-    }
     if (isTimeWithinTolerance) {
-        Serial.println("Time is synced with " + String(from) + " at " + currentTime);
+        Serial.println("Time is synced at " + currentTime);
     } else {
-        Serial.println(String(from) + ": time not equal. Current time: " + currentTime + ", Received time: " + value1);
+        Serial.println("time not equal. Current time: " + currentTime + ", Received time: " + value1);
+        wsClient.send("time:" + String(millis()));
     }
 }
 
-void handleInit(const uint32_t &from, const String &command) {
-    //TODO:Debug client id initialization
-    if (command.equals("Left") && !leftInit) {
-        leftId = from;
-        leftInit = true;
-        webserv.text(leftId,
+void handleInit() {
+        wsClient.send(
                 "Ack:" + String(currentVolumeDb) + ":" + String(currentSubVolumeDb) + ":" + String(muteState) +
                 ":" + String(currentSource));
-        Serial.println("Left Init complete!");
-    } else if (command.equals("Right") && !rightInit) {
-        rightId = from;
-        rightInit = true;
-        webserv.text(rightId,
-                "Ack:" + String(currentVolumeDb) + ":" + String(currentSubVolumeDb) + ":" + String(muteState) +
-                ":" + String(currentSource));
-        Serial.println("Right Init complete!");
-    }
+        Serial.println("Init complete!");
 }
 
-void handleHeartbeat(const uint32_t &from, const std::vector<String> &values) {
+void handleHeartbeat(const std::vector<String> &values) {
     String value1 = !values.empty() ? values[0] : "";
     String value2 = values.size() > 1 ? values[1] : "";
     String value3 = values.size() > 2 ? values[2] : "";
     String value4 = values.size() > 2 ? values[3] : "";
     if (value1.equals(String(currentVolumeDb)) && value2.equals(String(currentSubVolumeDb)) &&
         value3.equals(String(muteState)) && value4.equals(String(currentSource))) {
-        webserv.text(from, "heartBeatGOOD");
-        Serial.println(String(from) + ": Heartbeat GOOD");
+        wsClient.send("heartBeatGOOD");
+        Serial.println("Heartbeat GOOD");
     } else {
-        webserv.text(leftId, "heartBeatBAD:" + String(currentVolumeDb) + ":" + String(currentSubVolumeDb) + ":" +
+        wsClient.send("heartBeatBAD:" + String(currentVolumeDb) + ":" + String(currentSubVolumeDb) + ":" +
                         String(muteState) + ":" + String(currentSource));
-        Serial.println(String(from) + ": Heartbeat BAD");
+        Serial.println("Heartbeat BAD");
         Serial.println(String(currentVolumeDb) + ":" + String(currentSubVolumeDb) + ":" + String(muteState) + ":" +
                        String(currentSource));
     }
@@ -154,8 +128,7 @@ void parseIncomingMessage(const String &msg, String &command, std::vector<String
 
 void volume(float newLinearVolume) {
     currentVolumeDb = mapLinearToDb(newLinearVolume);
-    leftAck = false;
-    rightAck = false;
+    ack = false;
     sendCommandToClient("Volume", String(currentVolumeDb));
     currentLinearVolume = newLinearVolume;
     Serial.print("Sent Volume: ");
@@ -164,8 +137,7 @@ void volume(float newLinearVolume) {
 
 void sub(float newLinearSubVolume) {
     currentSubVolumeDb = mapLinearToDb(newLinearSubVolume);
-    leftAck = false;
-    rightAck = false;
+    ack = false;
     sendCommandToClient("Sub", String(currentSubVolumeDb));
     currentLinearSubVolume = newLinearSubVolume;
     Serial.print("Sent Sub: ");
@@ -173,8 +145,7 @@ void sub(float newLinearSubVolume) {
 }
 
 void mute(int newMuteState) {
-    leftAck = false;
-    rightAck = false;
+    ack = false;
     sendCommandToClient("Mute", String(newMuteState));
     muteState = newMuteState;
     Serial.print("Sent Mute: ");
@@ -182,8 +153,7 @@ void mute(int newMuteState) {
 }
 
 void source(int newSource) {
-    leftAck = false;
-    rightAck = false;
+    ack = false;
     sendCommandToClient("Source", String(newSource));
     currentSource = newSource;
     Serial.print("Sent Source: ");
@@ -206,35 +176,48 @@ String getValue(const String &data, char separator, int index) {
     return found > index ? data.substring(strIndex[0], strIndex[1]) : "";
 }
 
-void onWsEvent(AsyncWebSocket *serverName, AsyncWebSocketClient *client, AwsEventType type, void *arg, uint8_t *data, size_t len) {
-
-    String receivedMsg = String((char *) data).substring(0, len);
-
-    if (type == WS_EVT_CONNECT) {
-        Serial.println("Websocket client connection received : " + String(client->id()));
-    }else if (type == WS_EVT_DISCONNECT) {
-        Serial.println("Websocket client connection closed : " + String(client->id()));
-    } else if (type == WS_EVT_DATA) {
-        handleCallback(client->id(), receivedMsg);
+void onWsEvent(WebsocketsEvent event, const String& data) {
+    if(event == WebsocketsEvent::ConnectionOpened) {
+        Serial.println("Connection Opened");
+    } else if(event == WebsocketsEvent::ConnectionClosed) {
+        Serial.println("Connection Closed");
+    } else if(event == WebsocketsEvent::GotPing) {
+        Serial.println("Got a Ping!");
+    } else if(event == WebsocketsEvent::GotPong) {
+        Serial.println("Got a Pong!");
     }
 }
 
-void webSocketSetup() {
-    server.addHandler(&webserv);
-    webserv.onEvent(onWsEvent);
-    Serial.println("Websocket Setup Complete");
+void onMessageCallback(const WebsocketsMessage& message) {
+    Serial.print("Got Message: ");
+    Serial.println(message.data());
+    handleCallback(message.data());
 }
 
-void sendCommandToClient(const String &command, const String &value) {
+void webSocketSetup() {
+    // Start WebSocket server
+    wsServer.listen(8080);
+    Serial.println("WebSocket server started on " + String(WiFi.localIP()) + ":" + String(8080));
+
+    // Connect to WebSocket server
+    if(wsClient.connect("ws://192.168.1.248:8080")) {
+        Serial.println("Connected to WebSocket server: ws://192.168.1.248:8080");
+    } else {
+        Serial.println("Failed to connect to WebSocket server");
+    }
+
+    // Setup Callbacks
+    wsClient.onMessage(onMessageCallback);
+    wsClient.onEvent(onWsEvent);
+}
+
+void sendCommandToClient(const String& command, const String &value) {
 
     String message = command + ":" + value;
-    webserv.textAll(message);
-    lastMessageLeft = message;
-    lastMessageRight = message;
-    lastSendTimeLeft = millis();
-    lastSendTimeRight = millis();
-    retryCountLeft = 0;
-    retryCountRight = 0;
+    wsClient.send(message);
+    lastMessage = message;
+    lastSendTime = millis();
+    retryCount = 0;
 }
 
 const unsigned long volumeUpCode = 0xE21DEF00;

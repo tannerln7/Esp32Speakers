@@ -8,7 +8,6 @@
 
 #include <SharedVariables.h>
 #include "BluetoothA2DPSink.h"
-#include "AsyncWebSocket.h"
 
 
 void setupAck();
@@ -18,5 +17,6 @@ void initDebug();
 void wifiSetup();
 void bluetoothSetup();
 void webServerSetup();
+void webSocketLoop();
 
 

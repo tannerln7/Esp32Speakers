@@ -1,0 +1,13 @@
+//
+// Created by Tanner on 10/30/2023.
+//
+
+#ifndef ESP32SPEAKERS_LOOPS_H
+#define ESP32SPEAKERS_LOOPS_H
+#endif //ESP32SPEAKERS_LOOPS_H
+
+#include <Arduino.h>
+
+
+void ackLoop();
+void heartBeatLoop();

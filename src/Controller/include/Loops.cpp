@@ -4,13 +4,21 @@
 
 
 #include <Loops.h>
+#include <ArduinoWebsockets.h>
 
-unsigned long lastLeftInitTime = 0;
-unsigned long lastRightInitTime = 0;
+using namespace websockets;
+unsigned long lastInit = 0;
+unsigned long lastSendTime = 0;
 const unsigned long initDebounce = 15000;
+unsigned long retryCount = 0;
+
+extern WebsocketsClient wsClient;
+extern WebsocketsServer wsServer;
+String lastMessage;
+bool isInit;
+bool ack;
 // Initialize the mutex semaphore
-extern AsyncWebServer server;
-extern AsyncWebSocket webserv;
+
 
 [[noreturn]] void ackTask(void *pvParameters) {
     TickType_t xLastWakeTime;
@@ -24,25 +32,15 @@ extern AsyncWebSocket webserv;
         vTaskDelayUntil(&xLastWakeTime, xFrequency);
 
         // Perform ackCheck
-        if (!leftAck && millis() - lastSendTimeLeft > 500 && retryCountLeft < 5) {
-            webserv.text(leftId, lastMessageLeft);
-            lastSendTimeLeft = millis();
-            retryCountLeft++;
-        }
-
-        if (!rightAck && millis() - lastSendTimeRight > 500 && retryCountRight < 5) {
-            webserv.text(rightId, lastMessageRight);
-            lastSendTimeRight = millis();
-            retryCountRight++;
+        if (!ack && millis() - lastSendTime > 500 && retryCount < 5) {
+            wsClient.send(lastMessage);
+            lastSendTime = millis();
+            retryCount++;
         }
 
         // Perform ackReset
-        if (rightAck) {
-            retryCountRight = 0;
-        }
-
-        if (leftAck) {
-            retryCountLeft = 0;
+        if (ack) {
+            retryCount = 0;
         }
     }
 }
@@ -68,13 +66,9 @@ void setupAck() {
 }
 
 void initDebug(){
-        if (!leftInit && millis() - lastLeftInitTime > initDebounce) {
+        if (!isInit && millis() - lastInit > initDebounce) {
             Serial.println("Waiting for Left Init...");
-            lastLeftInitTime = millis();
-        }
-        if (!rightInit && millis() - lastRightInitTime > initDebounce) {
-            Serial.println("Waiting for Right Init...");
-            lastRightInitTime = millis();
+            lastInit = millis();
         }
 }
 
@@ -99,12 +93,15 @@ void wifiSetup() {
     Serial.println("Wifi Setup Complete");
 }
 
+void webSocketLoop() {
+    wsClient.poll();
+    wsServer.poll();
+    auto client = wsServer.accept();
+    if(client.available()) {
+        auto msg = client.readBlocking();
 
-void webServerSetup() {
-    server.onNotFound([](AsyncWebServerRequest *request) {
-        request->send(404);
-    });
-    server.begin();
-    Serial.println("Web Server Started");
+        // log
+        Serial.print("Got Message: ");
+        Serial.println(msg.data());
+    }
 }
-

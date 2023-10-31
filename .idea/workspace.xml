@@ -14,29 +14,518 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fd58d8ef-2135-42cc-98fd-0316cba02f47" name="Changes" comment="The Controller/main.cpp builds now. Too many bugs to list still">
-      <change afterPath="$PROJECT_DIR$/src/Controller/include/IRTask.cpp" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/include/IRTask.h" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Controller/include/PinDefinitionsAndMore.h" afterDir="false" />
+    <list default="true" id="fd58d8ef-2135-42cc-98fd-0316cba02f47" name="Changes" comment="Controller is working now, sans bluetooth.">
+      <change afterPath="$PROJECT_DIR$/src/Left/include/Handlers.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Left/include/Handlers.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Left/include/Loops.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Left/include/Loops.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Left/include/dspSetup.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Left/include/dspSetup.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Left/include/webSocketSetup.cpp" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Left/include/webSocketSetup.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.pio/build/project.checksum" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/project.checksum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.pio/libdeps/Controller/ESP32-A2DP" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/Controller/ESP32-A2DP" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/ESP32-A2DP" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/Left/ESP32-A2DP" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/AsyncTCP/.github/scripts/install-arduino-core-esp32.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/AsyncTCP/.github/scripts/install-arduino-ide.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/AsyncTCP/.github/scripts/install-platformio.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/AsyncTCP/.github/scripts/on-push.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/AsyncTCP/.github/stale.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/AsyncTCP/.github/workflows/push.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/AsyncTCP/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/AsyncTCP/.piopm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/AsyncTCP/.travis.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/AsyncTCP/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/AsyncTCP/Kconfig.projbuild" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/AsyncTCP/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/AsyncTCP/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/AsyncTCP/component.mk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/AsyncTCP/library.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/AsyncTCP/library.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/AsyncTCP/src/AsyncTCP.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/AsyncTCP/src/AsyncTCP.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/ESP32-A2DP" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/.gitattributes" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/.piopm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/.style.yapf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/CPPLINT.cfg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/Doxyfile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/README_de.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/README_fr.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/README_nl.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/ReleaseNotes.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/SECURITY.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/SupportedProtocols.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/BlynkIrRemote/BlynkIrRemote.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/BlynkIrRemote/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/CommonAcControl/CommonAcControl.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/CommonAcControl/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/ControlSamsungAC/ControlSamsungAC.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/ControlSamsungAC/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/DumbIRRepeater/DumbIRRepeater.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/DumbIRRepeater/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/IRGCSendDemo/IRGCSendDemo.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/IRGCSendDemo/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/IRGCTCPServer/IRGCTCPServer.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/IRGCTCPServer/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/IRMQTTServer/IRMQTTServer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/IRMQTTServer/IRMQTTServer.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/IRMQTTServer/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/IRServer/IRServer.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/IRServer/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/IRrecvDemo/IRrecvDemo.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/IRrecvDemo/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/IRrecvDump/IRrecvDump.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/IRrecvDump/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/IRrecvDumpV2/IRrecvDumpV2.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/IRrecvDumpV2/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/IRrecvDumpV3/BaseOTA.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/IRrecvDumpV3/IRrecvDumpV3.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/IRrecvDumpV3/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/IRsendDemo/IRsendDemo.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/IRsendDemo/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/IRsendProntoDemo/IRsendProntoDemo.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/IRsendProntoDemo/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/JVCPanasonicSendDemo/JVCPanasonicSendDemo.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/JVCPanasonicSendDemo/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/LGACSend/LGACSend.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/LGACSend/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/SmartIRRepeater/SmartIRRepeater.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/SmartIRRepeater/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/TurnOnArgoAC/TurnOnArgoAC.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/TurnOnArgoAC/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/TurnOnDaikinAC/TurnOnDaikinAC.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/TurnOnDaikinAC/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/TurnOnFujitsuAC/TurnOnFujitsuAC.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/TurnOnFujitsuAC/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/TurnOnGreeAC/TurnOnGreeAC.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/TurnOnGreeAC/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/TurnOnKelvinatorAC/TurnOnKelvinatorAC.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/TurnOnKelvinatorAC/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/TurnOnMitsubishiAC/TurnOnMitsubishiAC.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/TurnOnMitsubishiAC/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/TurnOnMitsubishiHeavyAc/TurnOnMitsubishiHeavyAc.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/TurnOnMitsubishiHeavyAc/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/TurnOnPanasonicAC/TurnOnPanasonicAC.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/TurnOnPanasonicAC/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/TurnOnToshibaAC/TurnOnToshibaAC.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/TurnOnToshibaAC/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/TurnOnTrotecAC/TurnOnTrotecAC.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/TurnOnTrotecAC/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/Web-AC-control/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/Web-AC-control/Web-AC-control.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/Web-AC-control/Web-AC-control.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/Web-AC-control/data/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/Web-AC-control/data/level_1_off.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/Web-AC-control/data/level_1_on.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/Web-AC-control/data/level_2_off.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/Web-AC-control/data/level_2_on.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/Web-AC-control/data/level_3_off.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/Web-AC-control/data/level_3_on.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/Web-AC-control/data/level_4_off.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/Web-AC-control/data/level_4_on.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/Web-AC-control/data/ui.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/Web-AC-control/data/ui.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/Web-AC-control/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/examples/Web-AC-control/printscreen.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/keywords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/library.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/library.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/pylintrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/CPPLINT.cfg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/IRac.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/IRac.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/IRmacros.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/IRrecv.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/IRrecv.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/IRremoteESP8266.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/IRsend.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/IRsend.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/IRtext.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/IRtext.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/IRtimer.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/IRtimer.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/IRutils.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/IRutils.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/i18n.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Airton.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Airton.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Airwell.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Airwell.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Aiwa.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Amcor.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Amcor.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Argo.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Argo.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Arris.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Bosch.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Bosch.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Bose.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Carrier.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Carrier.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_ClimaButler.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Coolix.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Coolix.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Corona.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Corona.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Daikin.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Daikin.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Delonghi.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Delonghi.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Denon.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Dish.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Doshisha.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Ecoclim.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Ecoclim.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Electra.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Electra.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_EliteScreens.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Epson.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Fujitsu.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Fujitsu.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_GICable.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_GlobalCache.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Goodweather.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Goodweather.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Gorenje.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Gree.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Gree.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Haier.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Haier.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Hitachi.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Hitachi.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Inax.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_JVC.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Kelon.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Kelon.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Kelvinator.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Kelvinator.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_LG.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_LG.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Lasertag.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Lego.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Lutron.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_MWM.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Magiquest.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Magiquest.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Metz.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Midea.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Midea.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_MilesTag2.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Mirage.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Mirage.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Mitsubishi.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Mitsubishi.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_MitsubishiHeavy.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_MitsubishiHeavy.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Multibrackets.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_NEC.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_NEC.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Neoclima.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Neoclima.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Nikai.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Panasonic.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Panasonic.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Pioneer.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Pronto.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_RC5_RC6.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_RCMM.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Rhoss.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Rhoss.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Samsung.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Samsung.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Sanyo.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Sanyo.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Sharp.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Sharp.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Sherwood.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Sony.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Symphony.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Tcl.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Tcl.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Technibel.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Technibel.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Teco.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Teco.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Teknopoint.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Toshiba.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Toshiba.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Toto.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Transcold.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Transcold.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Trotec.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Trotec.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Truma.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Truma.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Vestel.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Vestel.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Voltas.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Voltas.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Whirlpool.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Whirlpool.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Whynter.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Wowwee.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Xmp.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_York.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_York.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/ir_Zepeal.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/locale/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/locale/de-CH.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/locale/de-DE.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/locale/defaults.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/locale/en-AU.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/locale/en-IE.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/locale/en-UK.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/locale/en-US.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/locale/es-ES.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/locale/fr-FR.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/locale/it-IT.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/locale/nl-NL.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/locale/pt-BR.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/locale/ru-RU.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/locale/sv-SE.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/src/locale/zh-CN.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/IRac_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/IRrecv_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/IRrecv_test.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/IRsend_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/IRsend_test.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/IRutils_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Airton_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Airwell_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Aiwa_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Amcor_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Argo_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Arris_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Bosch_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Bose_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Carrier_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_ClimaButler_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Coolix_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Corona_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Daikin_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Delonghi_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Denon_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Dish_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Doshisha_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Ecoclim_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Electra_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_EliteScreens_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Epson_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Fujitsu_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_GICable_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_GlobalCache_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Goodweather_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Gorenje_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Gree_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Haier_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Hitachi_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Inax_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_JVC_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Kelon_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Kelvinator_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_LG_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Lasertag_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Lego_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Lutron_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_MWM_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Magiquest_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Metz_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Midea_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Milestag2_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Mirage_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_MitsubishiHeavy_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Mitsubishi_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Multibrackets_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_NEC_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Neoclima_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Nikai_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Panasonic_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Pioneer_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Pronto_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_RC5_RC6_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_RCMM_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Rhoss_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Samsung_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Sanyo_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Sharp_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Sherwood_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Sony_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Symphony_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Tcl_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Technibel_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Teco_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Teknopoint_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Toshiba_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Toto_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Transcold_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Trotec_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Truma_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Vestel_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Voltas_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Whirlpool_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Whynter_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Wowwee_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Xmp_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_York_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ir_Zepeal_test.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/test/ut_utils.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/tools/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/tools/RawToGlobalCache.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/tools/auto_analyse_raw_data.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/tools/auto_analyse_raw_data_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/tools/code_to_raw.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/tools/code_to_raw_test.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/tools/extract_lib_version.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/tools/gc_decode.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/tools/generate_irtext_h.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/tools/mkkeywords" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/tools/mode2_decode.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/tools/raw_to_pronto_code.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/tools/raw_to_pronto_code_test.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/IRremoteESP8266/tools/scrape_supported_devices.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/.piopm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/LICENSE.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example00_Blink/Scheduler_example00_Blink.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example00_Blink_Namespace/Scheduler_example00_Blink_Namespace.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example01/Scheduler_example01.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example02/Scheduler_example02.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example03/Scheduler_example03.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example04_StatusRequest/Scheduler_example04_StatusRequest.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example05_StatusRequest/Scheduler_example05_StatusRequest.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example06_IDLE/Scheduler_example06_IDLE.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example07_WDT/Scheduler_example07_WDT.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example08_LTS/Scheduler_example08_LTS.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example09_TimeCritical/Scheduler_example09_TimeCritical.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example10_Benchmark/Scheduler_example10_Benchmark.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example11_Priority/Scheduler_example11_Priority.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example12_Priority/Scheduler_example12_Priority.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example13_Micros/Scheduler_example13_Micros.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example14_Yield/Scheduler_example14_Yield.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example15_STDFunction/Scheduler_example15_STDFunction.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example16_Multitab/Scheduler_example16_Multitab.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example16_Multitab/file1.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example16_Multitab/file2.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example16_Multitab/header.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example16_Multitab/ts.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example17_Timeout/Scheduler_example17_Timeout.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example18_StatusRequest_LTS_WDT_Timeout/Scheduler_example18_StatusRequest_LTS_WDT_Timeout.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example19_Dynamic_Tasks/Scheduler_example19_Dynamic_Tasks.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example19_Dynamic_Tasks_SelfDestruct/Scheduler_example19_Dynamic_Tasks_SelfDestruct.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example19_Dynamic_Tasks_stdQueue/Scheduler_example19_Dynamic_Tasks_stdQueue.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example20_StatusRequest_LTS_WDT_Timeout_Object/Scheduler_example20_StatusRequest_LTS_WDT_Timeout_Object.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example20_StatusRequest_LTS_WDT_Timeout_Object/SuperSensor.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example20_StatusRequest_LTS_WDT_Timeout_Object/SuperSensor.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example21_OO_Callbacks/Calculator.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example21_OO_Callbacks/Calculator.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example21_OO_Callbacks/Scheduler_example21_OO_Callbacks.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example21_OO_Callbacks/SuperSensor.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example21_OO_Callbacks/SuperSensor.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example21_OO_Callbacks/Ticker.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example21_OO_Callbacks/Ticker.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example23_IDLE_Callback/Scheduler_example23_IDLE_Callback.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example24_CPU_LOAD/Scheduler_example24_CPU_LOAD.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example25_SCHEDULER_CHAIN/Scheduler_example25_SCHEDULER_CHAIN.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example26_SCHEDULING_OPTIONS/Scheduler_example26_SCHEDULING_OPTIONS.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example27_PlatformIO/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example27_PlatformIO/.vscode/extensions.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example27_PlatformIO/include/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example27_PlatformIO/include/led.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example27_PlatformIO/include/main.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example27_PlatformIO/lib/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example27_PlatformIO/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example27_PlatformIO/src/TaskScheduler.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example27_PlatformIO/src/led.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example27_PlatformIO/src/main.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_example27_PlatformIO/test/README" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/examples/Scheduler_template/Scheduler_template.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/keywords.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/library.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/library.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/src/TScheduler.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/src/TSchedulerDeclarations.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/src/TaskScheduler.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/src/TaskSchedulerDeclarations.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/TaskScheduler/src/TaskSchedulerSleepMethods.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/integrity.dat" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/libdeps/Left/integrity.dat" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/.clang-format" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/.gitlab-ci.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/.gitmodules" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/.piopm" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/CONTRIBUTING.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/LICENSE" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/autotest.sh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/examples/basic/basic.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/examples/basic/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/examples/bridge/bridge.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/examples/bridge/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/examples/echoNode/echoNode.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/examples/echoNode/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/examples/logClient/logClient.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/examples/logClient/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/examples/logServer/logServer.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/examples/logServer/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/examples/mqttBridge/mqttBridge.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/examples/mqttBridge/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/examples/namedMesh/namedMesh.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/examples/namedMesh/namedMesh.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/examples/namedMesh/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/examples/otaReceiver/otaReceiver.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/examples/otaReceiver/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/examples/otaSender/otaSender.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/examples/otaSender/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/examples/startHere/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/examples/startHere/startHere.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/examples/webServer/platformio.ini" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/examples/webServer/webServer.ino" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/library.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/library.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/src/arduino/wifi.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/src/boost/asynctcp.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/src/painlessMesh.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/src/painlessMeshSTA.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/src/painlessMeshSTA.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/src/painlessTaskOptions.h" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/src/painlessmesh/base64.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/src/painlessmesh/buffer.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/src/painlessmesh/callback.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/src/painlessmesh/configuration.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/src/painlessmesh/connection.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/src/painlessmesh/layout.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/src/painlessmesh/logger.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/src/painlessmesh/mesh.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/src/painlessmesh/ntp.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/src/painlessmesh/ota.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/src/painlessmesh/plugin.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/src/painlessmesh/protocol.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/src/painlessmesh/router.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/src/painlessmesh/tcp.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/src/plugin/performance.hpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/src/scheduler.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/libdeps/Left/painlessMesh/src/wifi.cpp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/platformio.ini" beforeDir="false" afterPath="$PROJECT_DIR$/platformio.ini" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/include/AudioBuffer.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/AudioBuffer.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/include/DEFINES.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/DEFINES.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/include/Debug.cpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/include/Debug.h" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/include/Handlers.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Handlers.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/include/Handlers.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Handlers.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/include/INCLUDE.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/INCLUDE.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/include/Loops.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Loops.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/include/Loops.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Loops.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/include/Message.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Message.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Controller/include/Message.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Message.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/include/SharedVariables.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/SharedVariables.h" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/src/main.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Left/lib/README" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Left/src/1_VolumeLeft.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Left/src/1_VolumeLeft.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Left/src/SigmaDSP_parameters.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Left/include/SigmaDSP_parameters.h" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Right/src/1_VolumeRight.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Right/src/1_VolumeRight.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +556,7 @@
       </list>
     </option>
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="Left" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="Controller" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -146,31 +635,32 @@
     <option name="showLibraryContents" value="true" />
     <option name="showScratchesAndConsoles" value="false" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;cf.advertisement.text.has.clang-format&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;com.jetbrains.cidr.cpp.cmake.workspace.CMakeCacheInvalidator.marker&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/tanne/Documents/PlatformIO/Projects/esp32Speakers/src/Controller/lib&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.customizations&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cf.advertisement.text.has.clang-format": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "com.jetbrains.cidr.cpp.cmake.workspace.CMakeCacheInvalidator.marker": "true",
+    "git-widget-placeholder": "master",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/tanne/Documents/PlatformIO/Projects/esp32Speakers/src/Left/lib",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.customizations",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\tanne\Documents\PlatformIO\Projects\esp32Speakers\src\Left\lib" />
       <recent name="C:\Users\tanne\Documents\PlatformIO\Projects\esp32Speakers\src\Controller\lib" />
       <recent name="C:\Users\tanne\Documents\PlatformIO\Projects\esp32Speakers\lib" />
       <recent name="C:\Users\tanne\Documents\PlatformIO\Projects\esp32Speakers\include" />
@@ -185,9 +675,9 @@
     </key>
   </component>
   <component name="RunManager">
-    <configuration default="true" type="CLionExternalRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
+    <configuration default="true" type="CMakeRunConfiguration" factoryName="Application" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true">
       <method v="2">
-        <option name="CLION.EXTERNAL.BUILD" enabled="true" />
+        <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
       </method>
     </configuration>
     <configuration name="PlatformIO" type="platformio" factoryName="PlatformIO Debug" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="esp32Speakers" TARGET_NAME="PlatformIO" CONFIG_NAME="PlatformIO">
@@ -220,7 +710,8 @@
       <workItem from="1697669790394" duration="22000" />
       <workItem from="1697670682256" duration="28651000" />
       <workItem from="1697926812313" duration="65790000" />
-      <workItem from="1698155015161" duration="33907000" />
+      <workItem from="1698155015161" duration="34786000" />
+      <workItem from="1698707081529" duration="24342000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
@@ -270,7 +761,15 @@
       <option name="project" value="LOCAL" />
       <updated>1698155483128</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Controller is working now, sans bluetooth.">
+      <option name="closed" value="true" />
+      <created>1698381219753</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1698381219753</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -301,6 +800,7 @@
     <MESSAGE value="commit" />
     <MESSAGE value="Major Changes" />
     <MESSAGE value="The Controller/main.cpp builds now. Too many bugs to list still" />
-    <option name="LAST_COMMIT_MESSAGE" value="The Controller/main.cpp builds now. Too many bugs to list still" />
+    <MESSAGE value="Controller is working now, sans bluetooth." />
+    <option name="LAST_COMMIT_MESSAGE" value="Controller is working now, sans bluetooth." />
   </component>
 </project>

@@ -1,6 +1,5 @@
 #include <WString.h>
 #include "esp_heap_caps.h"
-#include "AsyncWebSocket.h"
 #include "BluetoothA2DPSink.h"
 
 #pragma once
@@ -11,8 +10,7 @@ void handleBufferOverflow();
 void processFullBuffer();
 void read_data_stream(const uint8_t *data, uint32_t length);
 extern BluetoothA2DPSink a2dp_sink;
-extern AsyncWebServer server;
-extern AsyncWebSocket webserv;
+
 
 struct AudioPacket {
     uint8_t data[4096];

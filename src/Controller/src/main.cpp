@@ -3,20 +3,21 @@
 #include "AudioBuffer.h"
 #include <Arduino.h>
 #include <IRTask.h>
+#include <ArduinoWebsockets.h>
 
-AsyncWebSocket webserv("/audio");
-AsyncWebServer server(80);
+using namespace websockets;
+
 BluetoothA2DPSink a2dp_sink;
 AudioBuffer audioBuffer;
-SemaphoreHandle_t ws_mutex;
 
+WebsocketsServer wsServer;
+WebsocketsClient wsClient;
 
 void setup() {
     Serial.begin(115200);
     //audioBuffer = AudioBuffer(10);
     //ws_mutex = xSemaphoreCreateMutex();
     wifiSetup();
-    webServerSetup();
     webSocketSetup();
     //bluetoothSetup();
     irSetup();
@@ -31,9 +32,12 @@ void loop() {
             ESP.restart();
         }
     }
+    wsServer.poll();
+    wsClient.poll();
     //ackCheck();
     //ackReset();
-    //initDebug();
+    initDebug();
+    webSocketLoop();
     //currentHeap();
 }
 
