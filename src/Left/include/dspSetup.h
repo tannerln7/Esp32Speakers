@@ -9,7 +9,7 @@
 #include <SigmaDSP.h>
 #include <DSPEEPROM.h>
 #include <EEPROM.h>
-#include <SigmaDSP_parameters.h>
+#include "SigmaDSP_parameters.h"
 #include <Wire.h>
 
 void dspSetup();

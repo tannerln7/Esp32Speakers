@@ -3,78 +3,115 @@
 //
 
 #include <Handlers.h>
-#include <ArduinoWebsockets.h>
 
+#define MAX_RETRY_COUNT 5
 float currentLinearVolume = START_VOLUME;
 float currentVolumeDb = mapLinearToDb(START_VOLUME);
 float currentLinearSubVolume = START_SUB_VOLUME;
 float currentSubVolumeDb = mapLinearToDb(START_SUB_VOLUME);
-int muteState = START_MUTE;
-int currentSource = START_SOURCE;
+float muteState = START_MUTE;
+float currentSource = START_SOURCE;
+
+const float VOLUME_STEP = 0.04f;
+const float FINAL_DECREMENT = 0.03683772f;
+const float MINIMUM_POSSIBLE_VOLUME = 0.04f - FINAL_DECREMENT;
+
+String leftLastMessage = "";
+String rightLastMessage = "";
+unsigned long rightRetryCount = 0;
+unsigned long leftRetryCount = 0;
+bool leftAck = false;
+bool rightAck = false;
 bool recheck = true;
+extern bool leftInit;
+extern bool rightInit;
 
-using namespace websockets;
+extern const char* leftTopic;
+extern const char* leftAckTopic;
+extern const char* rightTopic;
+extern const char* rightAckTopic;
+const char* timeTopic = "home/livingroom/time";
 
-extern WebsocketsServer wsServer;
-extern WebsocketsClient wsClient;
+extern WiFiClient espClient;
+extern PubSubClient client;
 
 
 float mapLinearToDb(float linearVolume) {
-    return (linearVolume - MIN_LINEAR_VOLUME) * (MAX_DB_VOLUME - MIN_DB_VOLUME) /
-           (MAX_LINEAR_VOLUME - MIN_LINEAR_VOLUME) + MIN_DB_VOLUME;
+    return 20 * log10(linearVolume);
 }
 
-
-void handleCallback(const String &msg) {
+void handleCallback(String topic, String &msg) {
     String command;
     std::vector<String> values;
     parseIncomingMessage(msg, command, values);
 
+    // Check if values is empty and exit if true
+    if (values.empty()) {
+        Serial.println("Error: Values is empty");
+        return;
+    }
+
     std::map<String, float *> commandToVariable = {
-            {"volumeACK",    &currentVolumeDb},
-            {"subVolumeAck", &currentSubVolumeDb},
-            {"muteACK",      reinterpret_cast<float *>(&muteState)},
-            {"sourceACK",    reinterpret_cast<float *>(&currentSource)}
+            {"VolumeACK",    &currentVolumeDb},
+            {"SubACK", &currentSubVolumeDb},
+            {"Mute",      &muteState},
+            {"SourceACK",    &currentSource}
     };
 
     auto it = commandToVariable.find(command);
-
     if (it != commandToVariable.end()) {
         float *variableToPass = it->second;
         float receivedValue = values[0].toFloat();
-        handleAck(*variableToPass, receivedValue);
-    } else if (command.equals("time")) {
-        handleTime(values[0]);
-    } else if (command.equals("Left") || command.equals("Right")) {
-        handleInit();
-    } else if (command.equals("heartBeat")) {
-        handleHeartbeat(values);
-    }else {
-        Serial.println("Error: Unknown command");
+        handleAck(topic, *variableToPass, receivedValue);
+    } else {
+        // Handles other cases that are not in the map
+        if (command.equals("time")) {
+            handleTime(topic, values[0]);
+        } else if (command.equals("Left") || command.equals("Right")) {
+            handleInit(topic, values);
+        } else if (command.equals("HeartbeatLeft") || command.equals("HeartbeatRight")) {
+            Serial.println(command);
+            handleHeartbeat(topic, values);
+        } else {
+            Serial.println("Error: Unknown command");
+        }
     }
 }
+
 
 unsigned long abs_diff(unsigned long a, unsigned long b) {
     return (a > b) ? (a - b) : (b - a);
 }
 
-void handleAck(const float &currentValue, const float &receivedValue) {
-    bool isSame = floatEqual(currentValue, receivedValue);
+void handleAck(String &topic, float &currentValue, const float &receivedValue) {
+    bool isSame = (String(currentValue) == String(receivedValue));
     if (isSame) {
-
+        if (topic.equals(leftAckTopic)) {
+            leftAck = true;
+            leftRetryCount = 0;
+            Serial.println("Left ACK");
+        } else if (topic.equals(rightAckTopic)) {
+            rightAck = true;
+            rightRetryCount = 0;
+            Serial.println("Right ACK");
+        }
     } else {
-        Serial.println("Error: " + String(currentValue) + " does not equal " + String(receivedValue));
+        Serial.println("Error: " + topic + ": " + String(currentValue) + " does not equal " + String(receivedValue));
+        if (topic.equals(leftAckTopic) && leftRetryCount < MAX_RETRY_COUNT && !leftAck) {
+            leftRetryCount++;
+            client.publish(leftTopic, leftLastMessage.c_str());
+
+        } else if (topic.equals(rightAckTopic) && rightRetryCount < MAX_RETRY_COUNT && !rightAck) {
+            rightRetryCount++;
+            client.publish(rightTopic, rightLastMessage.c_str());
+        } else {
+            Serial.println("Error: " + String(topic) + ": Max retry count reached");
+        }
     }
-    //TODO: figure this out....
-}
-
-bool floatEqual(float a, float b) {
-    float tolerance = 0.0001;
-    return std::fabs(a - b) < tolerance;
 }
 
 
-void handleTime(const String &value1) {
+void handleTime(String &topic, String &value1) {
     unsigned long currentTimeMillis = millis();
     unsigned long receivedTime = value1.toInt();
     bool isTimeWithinTolerance = abs_diff(currentTimeMillis, receivedTime) <= TIME_TOLERANCE;
@@ -84,30 +121,32 @@ void handleTime(const String &value1) {
         Serial.println("Time is synced at " + currentTime);
     } else {
         Serial.println("time not equal. Current time: " + currentTime + ", Received time: " + value1);
-        wsClient.send("time:" + String(millis()));
+        client.publish(timeTopic, currentTime.c_str());
     }
 }
 
-void handleInit() {
-        wsClient.send(
-                "Ack:" + String(currentVolumeDb) + ":" + String(currentSubVolumeDb) + ":" + String(muteState) +
-                ":" + String(currentSource));
-        Serial.println("Init complete!");
+void handleInit(String &topic, std::vector<String> &values) {
+    String command = values[0];
+    String message = "Ack:" + String(currentVolumeDb) + ":" + String(currentSubVolumeDb) + ":" + String(muteState) +
+    ":" + String(currentSource);
+    client.publish(getTopic(topic), message.c_str());
+    Serial.println((String) getTopic(topic) + ": Init complete!");
 }
 
-void handleHeartbeat(const std::vector<String> &values) {
+void handleHeartbeat(String &topic, std::vector<String> &values) {
     String value1 = !values.empty() ? values[0] : "";
     String value2 = values.size() > 1 ? values[1] : "";
     String value3 = values.size() > 2 ? values[2] : "";
-    String value4 = values.size() > 2 ? values[3] : "";
+    String value4 = values.size() > 3 ? values[3] : "";
     if (value1.equals(String(currentVolumeDb)) && value2.equals(String(currentSubVolumeDb)) &&
         value3.equals(String(muteState)) && value4.equals(String(currentSource))) {
-        wsClient.send("heartBeatGOOD");
-        Serial.println("Heartbeat GOOD");
+        client.publish(getTopic(topic), "HeartBeatGood");
+        Serial.println(topic + "Heartbeat GOOD");
     } else {
-        wsClient.send("heartBeatBAD:" + String(currentVolumeDb) + ":" + String(currentSubVolumeDb) + ":" +
-                        String(muteState) + ":" + String(currentSource));
-        Serial.println("Heartbeat BAD");
+        String badMessage = "heartBeatBAD:" + String(currentVolumeDb) + ":" + String(currentSubVolumeDb) + ":" +
+                                String(muteState) + ":" + String(currentSource);
+        client.publish(getTopic(topic), badMessage.c_str());
+        Serial.println(topic + ": Heartbeat BAD");
         Serial.println(String(currentVolumeDb) + ":" + String(currentSubVolumeDb) + ":" + String(muteState) + ":" +
                        String(currentSource));
     }
@@ -124,12 +163,12 @@ void parseIncomingMessage(const String &msg, String &command, std::vector<String
         ++index;
     }
 }
-//TODO:Replace implement WebSockets instead of sendCommandToClient
 
 void volume(float newLinearVolume) {
     currentVolumeDb = mapLinearToDb(newLinearVolume);
-    ack = false;
-    sendCommandToClient("Volume", String(currentVolumeDb));
+    leftAck = false;
+    rightAck = false;
+    sendCommandToClient(VOLUME_COMMAND, String(currentVolumeDb));
     currentLinearVolume = newLinearVolume;
     Serial.print("Sent Volume: ");
     Serial.println(String(currentVolumeDb) + "Db");
@@ -137,24 +176,28 @@ void volume(float newLinearVolume) {
 
 void sub(float newLinearSubVolume) {
     currentSubVolumeDb = mapLinearToDb(newLinearSubVolume);
-    ack = false;
-    sendCommandToClient("Sub", String(currentSubVolumeDb));
+    leftAck = false;
+    rightAck = false;
+    String command = "Sub";
+    sendCommandToClient(SUB_VOLUME_COMMAND, String(currentSubVolumeDb));
     currentLinearSubVolume = newLinearSubVolume;
     Serial.print("Sent Sub: ");
     Serial.println(String(currentSubVolumeDb) + "Db");
 }
 
-void mute(int newMuteState) {
-    ack = false;
-    sendCommandToClient("Mute", String(newMuteState));
+void mute(float newMuteState) {
+    leftAck = false;
+    rightAck = false;
+    sendCommandToClient(MUTE_COMMAND, String(newMuteState));
     muteState = newMuteState;
     Serial.print("Sent Mute: ");
     Serial.println(String(muteState));
 }
 
-void source(int newSource) {
-    ack = false;
-    sendCommandToClient("Source", String(newSource));
+void source(float newSource) {
+    leftAck = false;
+    rightAck = false;
+    sendCommandToClient( SOURCE_COMMAND, String(newSource));
     currentSource = newSource;
     Serial.print("Sent Source: ");
     Serial.println(String(currentSource));
@@ -176,48 +219,14 @@ String getValue(const String &data, char separator, int index) {
     return found > index ? data.substring(strIndex[0], strIndex[1]) : "";
 }
 
-void onWsEvent(WebsocketsEvent event, const String& data) {
-    if(event == WebsocketsEvent::ConnectionOpened) {
-        Serial.println("Connection Opened");
-    } else if(event == WebsocketsEvent::ConnectionClosed) {
-        Serial.println("Connection Closed");
-    } else if(event == WebsocketsEvent::GotPing) {
-        Serial.println("Got a Ping!");
-    } else if(event == WebsocketsEvent::GotPong) {
-        Serial.println("Got a Pong!");
-    }
-}
-
-void onMessageCallback(const WebsocketsMessage& message) {
-    Serial.print("Got Message: ");
-    Serial.println(message.data());
-    handleCallback(message.data());
-}
-
-void webSocketSetup() {
-    // Start WebSocket server
-    wsServer.listen(8080);
-    Serial.println("WebSocket server started on " + String(WiFi.localIP()) + ":" + String(8080));
-
-    // Connect to WebSocket server
-    if(wsClient.connect("ws://192.168.1.248:8080")) {
-        Serial.println("Connected to WebSocket server: ws://192.168.1.248:8080");
-    } else {
-        Serial.println("Failed to connect to WebSocket server");
-    }
-
-    // Setup Callbacks
-    wsClient.onMessage(onMessageCallback);
-    wsClient.onEvent(onWsEvent);
-}
-
 void sendCommandToClient(const String& command, const String &value) {
-
     String message = command + ":" + value;
-    wsClient.send(message);
-    lastMessage = message;
-    lastSendTime = millis();
-    retryCount = 0;
+    client.publish(leftTopic, message.c_str());
+    client.publish(rightTopic, message.c_str());
+    leftLastMessage = message;
+    rightLastMessage = message;
+    rightRetryCount = 0;
+    leftRetryCount = 0;
 }
 
 const unsigned long volumeUpCode = 0xE21DEF00;
@@ -237,23 +246,34 @@ void handleIRCode(unsigned long code) {
             case volumeUpCode:
                 lastIRCode = code;
                 if (currentLinearVolume < MAX_LINEAR_VOLUME) {
-                    currentLinearVolume++;
+                    if (currentLinearVolume < VOLUME_STEP) {
+                        currentLinearVolume = VOLUME_STEP;
+                    }else{
+                        currentLinearVolume += VOLUME_STEP;
+                        currentLinearVolume = floatsAreSoDumb(currentLinearVolume);
+                    }
                     volume(currentLinearVolume);
                     Serial.println("Volume Up: " + String(currentLinearVolume));
                 } else {
-                    volume(currentLinearVolume);
+                    volume(MAX_LINEAR_VOLUME);
                     Serial.println("Volume already at max.");
                 }
                 break;
             case volumeDownCode:
                 lastIRCode = code;
-                if (currentLinearVolume > MIN_LINEAR_VOLUME) {
-                    currentLinearVolume--;
+                if (currentLinearVolume > MINIMUM_POSSIBLE_VOLUME) {
+                    if (currentLinearVolume > VOLUME_STEP) {
+                        currentLinearVolume -= VOLUME_STEP;
+                        currentLinearVolume = floatsAreSoDumb(currentLinearVolume);
+                    } else {
+                        // This block will only execute once when currentLinearVolume is at 0.04
+                        currentLinearVolume = MINIMUM_POSSIBLE_VOLUME; // Directly set to final minimum volume
+                    }
                     volume(currentLinearVolume);
                     Serial.println("Volume Down: " + String(currentLinearVolume));
                 } else {
-                    volume(currentLinearVolume);
-                    Serial.println("Volume already at min");
+                    volume(MINIMUM_POSSIBLE_VOLUME);
+                    Serial.println("Volume already at min: " + String(currentLinearVolume));
                 }
                 break;
             case muteCode:
@@ -271,23 +291,34 @@ void handleIRCode(unsigned long code) {
             case subUpCode:
                 lastIRCode = code;
                 if (currentLinearSubVolume < MAX_LINEAR_VOLUME) {
-                    currentLinearSubVolume++;
+                    if (currentLinearSubVolume < VOLUME_STEP) {
+                        currentLinearSubVolume = VOLUME_STEP;
+                    }else{
+                        currentLinearSubVolume += VOLUME_STEP;
+                        currentLinearSubVolume = floatsAreSoDumb(currentLinearSubVolume);
+                    }
                     sub(currentLinearSubVolume);
                     Serial.println("Sub Volume Up: " + String(currentLinearSubVolume));
                 } else {
-                    sub(currentLinearSubVolume);
-                    Serial.println("Sub Volume already at max");
+                    sub(MAX_LINEAR_VOLUME);
+                    Serial.println("Sub Volume already at max.");
                 }
                 break;
             case subDownCode:
                 lastIRCode = code;
-                if (currentLinearSubVolume > MIN_LINEAR_VOLUME) {
-                    currentLinearSubVolume--;
+                if (currentLinearSubVolume > MINIMUM_POSSIBLE_VOLUME) {
+                    if (currentLinearSubVolume > VOLUME_STEP) {
+                        currentLinearSubVolume -= VOLUME_STEP;
+                        currentLinearSubVolume = floatsAreSoDumb(currentLinearSubVolume);
+                    } else {
+                        // This block will only execute once when currentLinearVolume is at 0.04
+                        currentLinearSubVolume = MINIMUM_POSSIBLE_VOLUME; // Directly set to final minimum volume
+                    }
                     sub(currentLinearSubVolume);
                     Serial.println("Sub Volume Down: " + String(currentLinearSubVolume));
                 } else {
-                    sub(currentLinearSubVolume);
-                    Serial.println("Sub volume already at min");
+                    sub(MINIMUM_POSSIBLE_VOLUME);
+                    Serial.println("Volume already at min: " + String(currentLinearSubVolume));
                 }
                 break;
             case sourceCode:
@@ -313,3 +344,18 @@ void handleIRCode(unsigned long code) {
         }
     }while (recheck);
 }
+
+const char* getTopic(const String& topic) {
+    if (topic.equals(leftAckTopic)) {
+        return leftTopic;
+    } else if (topic.equals(rightAckTopic)) {
+        return rightTopic;
+    } else {
+        return nullptr;
+    }
+}
+
+    float floatsAreSoDumb(float var) {
+        float value = (int)(var * 100);
+        return (float)value / 100;
+    }

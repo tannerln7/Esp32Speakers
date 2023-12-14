@@ -1,8 +1,8 @@
 /*
  * File:           defines.h
  *
- * Created:        Wednesday, October 4, 2023 2:25:15 AM
- * Description:    right IC default download data definitions.
+ * Created:        Tuesday, December 12, 2023 11:43:51 PM
+ * Description:    left IC default download data definitions.
  *
  * This software is distributed in the hope that it will be useful,
  * but is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR

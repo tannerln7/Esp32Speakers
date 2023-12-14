@@ -65,6 +65,5 @@ void IRReceiverTask(void * parameter) {
             }
             IrReceiver.resume(); // Enable receiving of the next value
         }
-        vTaskDelay(10 / portTICK_PERIOD_MS); // Add a small delay, adjust as needed
     }
 }

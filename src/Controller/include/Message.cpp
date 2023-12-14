@@ -11,7 +11,3 @@
 __attribute__((unused)) void sendToAll(const String &data) {
 
 }
-//TODO: add method to send completed audio packets to all clients
-void nodeTimeAdjustedCallback(int32_t offset) {
-    //Serial.printf("Adjusted time %u. Offset = %d\n", mesh.getNodeTime(), offset);
-}

@@ -4,56 +4,68 @@
 
 #include "Loops.h"
 #include "Handlers.h"
-#include "ArduinoWebsockets.h"
 
 
 bool ackReceived = false;
 unsigned long lastSent = millis() - 2000;
 const unsigned long interval = 2000;
-unsigned long lastHeartbeat = 0;
-const unsigned long HEARTBEAT_INTERVAL = 60000;
+unsigned long lastHeartbeatSent = 0;
 unsigned long lastHeartbeatReceived = 0;
-const unsigned long HEARTBEAT_TIMEOUT = 1000;
-long heartbeatTimeoutCounter = 0;
+const unsigned long HEARTBEAT_INTERVAL = 10000;
+const unsigned long HEARTBEAT_TIMEOUT = 15000;
+unsigned long heartbeatTimeoutCounter = 0;
 
-using namespace websockets;
+extern WiFiClient espClient;
+extern PubSubClient client;
+extern const char* leftAckTopic;
+const String leftId = "1111";
 
-extern WebsocketsClient client;
 
 void ackLoop(){
     if (!ackReceived && (millis() - lastSent >= interval)) {
-        client.send(String("Left"));  // Send ID to server
+        String ackString = "Left:" + String(leftId);
+        client.publish(leftAckTopic, ackString.c_str());  // Send ID to server
         Serial.println("Broadcasting init to server...");
         Serial.println(String(ackReceived));
-        Serial.println("Left");
+        Serial.println((String)leftAckTopic + " Left:" + leftId);
         lastSent = millis();
     }
 }
 
-void heartBeatLoop(){
-    if (ackReceived && millis() - lastHeartbeat > HEARTBEAT_INTERVAL) {
+void heartBeatLoop() {
+    unsigned long currentMillis = millis();
+
+    // Time to send a new heartbeat
+    if (ackReceived && currentMillis - lastHeartbeatSent >= HEARTBEAT_INTERVAL) {
         sendHeartbeat();
         Serial.println("Sending heartbeat to server...");
-        lastHeartbeat = millis();
+        lastHeartbeatSent = currentMillis;
     }
-    if (lastHeartbeatReceived > HEARTBEAT_TIMEOUT) {
-        lastHeartbeatReceived = millis();
+
+    // Check for heartbeat timeout
+    if (currentMillis - lastHeartbeatSent >= HEARTBEAT_INTERVAL &&
+        currentMillis - lastHeartbeatReceived > HEARTBEAT_TIMEOUT) {
+        Serial.println("Heartbeat failed... Retrying Ack");
+        lastHeartbeatReceived = currentMillis;
         heartbeatTimeoutCounter++;
         ackReceived = false;
-        Serial.println("Heartbeat failed... Retrying Ack");
     }
-    if (heartbeatTimeoutCounter >= 1 ) {
-        mute(1);
-        delay(1000);
-        mute(0);
-        delay(750);
-        mute(1);
-        delay(1000);
-        mute(0);
-        delay(750);
-        mute(1);
+
+    // Action for two consecutive heartbeat timeouts
+    if (heartbeatTimeoutCounter >= 2) {
         Serial.println("2 heartbeat timeouts in a row.. Resetting server ack...");
+        mute(1);
+        delay(1000);
+        mute(0);
+        delay(750);
+        mute(1);
+        delay(1000);
+        mute(0);
+        delay(750);
+        mute(1);
         ackReceived = false;
+        heartbeatTimeoutCounter = 0; // Reset the counter
     }
 }
+
 

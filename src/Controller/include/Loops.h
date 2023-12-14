@@ -8,15 +8,10 @@
 
 #include <SharedVariables.h>
 #include "BluetoothA2DPSink.h"
+#include <WiFi.h>
 
-
-void setupAck();
-
-[[noreturn]] void ackTask(void *pvParameters);
 void initDebug();
 void wifiSetup();
-void bluetoothSetup();
-void webServerSetup();
-void webSocketLoop();
+//void bluetoothSetup();
 
 

@@ -4,8 +4,6 @@
 #pragma once
 
 #include <Arduino.h>
-#include <freertos/FreeRTOS.h>
-#include <freertos/task.h>
 
 #ifndef ESP32SPEAKERS_SHAREDVARIABLES_H
 #define ESP32SPEAKERS_SHAREDVARIABLES_H
@@ -17,13 +15,8 @@ extern float currentLinearVolume;
 extern float currentVolumeDb;
 extern float currentLinearSubVolume;
 extern float currentSubVolumeDb;
-extern int muteState;
-extern int currentSource;
-extern String lastMessage;
-extern bool ack;
-extern bool isInit;
-extern unsigned long lastSendTime;
-extern unsigned long retryCount;
+extern float muteState;
+extern float currentSource;
 
 
 //constants

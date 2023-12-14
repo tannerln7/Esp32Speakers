@@ -10,7 +10,7 @@ void handleBufferOverflow();
 void processFullBuffer();
 void read_data_stream(const uint8_t *data, uint32_t length);
 extern BluetoothA2DPSink a2dp_sink;
-
+extern painlessMesh mesh;
 
 struct AudioPacket {
     uint8_t data[4096];
@@ -133,7 +133,7 @@ void processFullBuffer(){
     AudioPacket packet = audioBuffer.packetize();
     if (packet.isValid) {
         // Send the binary data directly via WebSocket
-        webserv.binaryAll(packet.data, packet.size);
+        mesh.sendBroadcast(reinterpret_cast<const String &>(packet.data));
         Serial.println("Buffer processed and sent as binary WebSocket frame.");
     }
     audioBuffer.clear();  // Clear the buffer for the next data

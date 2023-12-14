@@ -1,4 +1,5 @@
-https://github.com/gilmaimon/ArduinoWebsockets.git
-SigmaDSP
 hash
+SigmaDSP
+Wifi
 ArduinoJson@^6.17.3
+https://github.com/knolleary/pubsubclient.git
