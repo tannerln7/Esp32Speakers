@@ -7,6 +7,8 @@
 #endif //ESP32SPEAKERS_LOOPS_H
 
 #include <Arduino.h>
+#include "PubSubClient.h"
+#include "WiFi.h"
 
 
 void ackLoop();

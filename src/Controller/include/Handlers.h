@@ -1,7 +1,8 @@
 //
 // Created by Tanner on 10/22/2023.
 //
-#include <ArduinoWebsockets.h>
+#include <WiFi.h>
+#include "PubSubClient.h"
 #include <cmath> // for std::fabs
 #include <SharedVariables.h>
 #include <map>
@@ -9,23 +10,20 @@
 #include <DEFINES.h>
 #include <vector>
 
-using namespace websockets;
-
-void handleCallback(const String &msg);
+void handleCallback(String topic, String &msg);
 void volume(float);
 void sub(float);
-void mute(int);
+void mute(float);
 String getValue(const String &data, char separator, int index);
 float mapLinearToDb(float);
-void source(int);
+void source(float);
 void parseIncomingMessage(const String &msg, String &command, std::vector<String> &values);
-void handleAck(const float &currentValue, const float &receivedValue);
-bool floatEqual(float a, float b);
-void handleHeartbeat(const std::vector<String> &values);
-void handleInit();
-void handleTime(const String &value1);
+void handleAck(String &topic, float &currentValue, const float &receivedValue);
+void handleHeartbeat(String &topic, std::vector<String> &values);
+void handleInit(String &topic, std::vector<String> &values);
+void handleTime(String &topic, String &value1);
 unsigned long abs_diff(unsigned long a, unsigned long b);
 void handleIRCode(unsigned long code);
-void webSocketSetup();
-void onMessageCallback(const WebsocketsMessage& message);
 void sendCommandToClient(const String& command, const String &value);
+const char* getTopic(const String &topic);
+float floatsAreSoDumb(float var);

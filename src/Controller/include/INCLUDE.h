@@ -8,9 +8,12 @@
 #endif //ESP32SPEAKERS_INCLUDE_H
 
 #pragma once
-#include "BluetoothA2DPSink.h"
-#include <WiFi.h>
+
 #include <map>
 #include "Message.h"
 #include "Handlers.h"
 #include "SharedVariables.h"
+#include "Loops.h"
+//#include "AudioBuffer.h"
+#include <Arduino.h>
+#include <IRTask.h>

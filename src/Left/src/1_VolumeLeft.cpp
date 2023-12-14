@@ -1,36 +1,76 @@
 #include <Wire.h>
 #include <SigmaDSP.h>
 #include <dspSetup.h>
-#include <webSocketSetup.h>
 #include <Arduino.h>
 #include <Loops.h>
-#include <ArduinoWebsockets.h>
+#include <meshSetup.h>
+#include <PubSubClient.h>
+#include <WiFi.h>
 
-using namespace websockets;
+const char* ssid = "ATT SUX";
+const char* password = "peanutapple42";
+const char* mqttServer = "mainsail.local";
+const int mqttPort = 1883;
+const char* mqttUser = "tannerln7";
+const char* mqttPassword = "Muspotaebo1324";
+const char* leftTopic = "home/livingroom/left/command";
+const char* leftAckTopic = "home/livingroom/left/ack";
 
-#define   MESH_PREFIX     "LivingRoom"
-#define   MESH_PASSWORD   "PassworD1234"
-#define   MESH_PORT       5555
+SigmaDSP dsp(Wire, DSP_I2C_ADDRESS, 96000.00f /*,12*/);
+WiFiClient espClient;
+PubSubClient client(espClient);
 
+void callback(char* topic, byte* payload, unsigned int length) {
+    String message;
+    for (unsigned int i = 0; i < length; i++) {
+        message += (char)payload[i];
+    }
+    handleCallback(message);
+}
 
-extern SigmaDSP* dsp;
-extern DSPEEPROM* ee;
-WebsocketsClient client;
+void reconnect() {
+    while (!client.connected()) {
+        // Attempt to connect with username and password
+        Serial.println("Attempting MQTT connection...");
+        String clientId = "Left";
+        clientId += String(random(0xffff), HEX);
+        if (client.connect(clientId.c_str(), mqttUser, mqttPassword)) {
+            Serial.println("connected");
+            client.subscribe(leftTopic);
+            client.publish(leftAckTopic, "Left Online");
+            Serial.println("Left Online");
+        } else {
+            Serial.print("failed, rc=");
+            Serial.print(client.state());
+            Serial.println(" try again in 5 seconds");
+            // Wait 5 seconds before retrying
+            delay(5000);
+        }
+    }
+}
 
 void setup() {
   Serial.begin(115200);
   dspSetup();
-  webSocketSetup();
+  wifiSetup();
+  client.setServer(mqttServer, mqttPort);
+  client.setCallback(callback);
+  reconnect();
 }
 
 void loop() {
-    Serial.begin(115200);
-    delay(1000);
+    //Serial read for restart
+    if (Serial.available()) {
+        char c = char(Serial.read());
+        if (c == 'R') {
+            ESP.restart();
+        }
+    }
+    if (!client.connected()) {
+        reconnect();
+    }
     ackLoop();
     heartBeatLoop();
-    if(client.available()) {
-        client.poll();
-        Serial.println("Client available");
-    }
-    delay(500);
+    client.loop();
+    delay(10);
 }

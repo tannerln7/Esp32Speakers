@@ -7,20 +7,23 @@
 
 #endif //ESP32SPEAKERS_DEFINES_H
 
-const float MAX_LINEAR_VOLUME = 30;
-const float MIN_LINEAR_VOLUME = 1;
-const float MAX_DB_VOLUME = 0.0;
-const float MIN_DB_VOLUME = -30.0;
+const float MAX_LINEAR_VOLUME = 1;
+const float MIN_LINEAR_VOLUME = 0.04;
 
 
 #define IR_RECEIVE_PIN 15
-#define WEBSOCKET_PORT 5555
 #define TIME_TOLERANCE 20
-#define START_VOLUME 20
-#define START_SUB_VOLUME 30
-#define START_MUTE 0
-#define START_SOURCE 2
-#define DEBOUNCE_DELAY 30000
+#define START_VOLUME 0.48
+#define START_SUB_VOLUME 0.7
+#define START_MUTE 0.00
+#define START_SOURCE 2.00
+#define MESH_PREFIX "audioMesh"
+#define MESH_PASSWORD "password"
+#define MESH_PORT 5555
+#define VOLUME_COMMAND "Volume"
+#define SUB_VOLUME_COMMAND "Sub"
+#define MUTE_COMMAND "Mute"
+#define SOURCE_COMMAND "Source"
 
 
 
