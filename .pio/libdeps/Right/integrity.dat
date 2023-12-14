@@ -1,0 +1,5 @@
+Wifi
+hash
+ArduinoJson@^6.17.3
+https://github.com/knolleary/pubsubclient.git
+SigmaDSP
