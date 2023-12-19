@@ -154,8 +154,26 @@
  .pio/libdeps/Controller/ESP32-A2DP/src/SoundData.h \
  .pio/libdeps/Controller/ESP32-A2DP/src/A2DPVolumeControl.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_system/include/esp_task_wdt.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/driver/include/driver/i2s.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/include/soc/i2s_periph.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/periph_defs.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/i2s_struct.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/i2s_reg.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/include/soc/rtc_periph.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/include/soc/rtc_io_periph.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/rtc_io_channel.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/rtc_io_reg.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/rtc_io_struct.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/rtc_cntl_reg.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/rtc_cntl_struct.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/sens_struct.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/i2s_types.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/driver/include/driver/periph_ctrl.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/driver/include/driver/adc.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/adc_types.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-log.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-bt.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_ringbuf/include/freertos/ringbuf.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFi.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/Print.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/IPv6Address.h \

@@ -1,6 +1,11 @@
 #include "INCLUDE.h"
 #include <WiFi.h>
 #include <PubSubClient.h>
+#include <BluetoothA2DPSink.h>
+#include <WebSocketsServer.h>
+#include <AsyncTCP.h>
+#include <websocket.h>
+#include <WiFiMulti.h>
 
 const char* ssid = "ATT SUX";
 const char* password = "peanutapple42";
@@ -12,11 +17,13 @@ const char* leftTopic = "home/livingroom/left/command";
 const char* leftAckTopic = "home/livingroom/left/ack";
 const char* rightTopic = "home/livingroom/right/command";
 const char* rightAckTopic = "home/livingroom/right/ack";
+
+WiFiMulti WiFiMulti;
+WebSocketsServer webSocket = WebSocketsServer(81);
+String wsUrl;
 WiFiClient espClient;
 PubSubClient client(espClient);
-
-//BluetoothA2DPSink a2dp_sink;
-//AudioBuffer audioBufferr;
+BluetoothA2DPSink a2dpSink;
 
 void callback(const char* topic, byte* payload, unsigned int length) {
     String message;
@@ -52,14 +59,31 @@ void reconnect() {
 
 void setup() {
     Serial.begin(115200);
-    //audioBuffer = AudioBuffer(10);
-    //ws_mutex = xSemaphoreCreateMutex();
-    //bluetoothSetup();
-    wifiSetup();
+    Serial.setDebugOutput(true);
+    for(uint8_t t = 4; t > 0; t--) {
+        Serial.printf("[SETUP] BOOT WAIT %d...\n", t);
+        Serial.flush();
+        delay(1000);
+    }
+    WiFiMulti.addAP(ssid, password);
+    while(WiFiMulti.run() != WL_CONNECTED) {
+        delay(100);
+    }
+    webSocket.begin();
+    webSocket.onEvent(webSocketEvent);
+
+    //wifiSetup();
     client.setServer(mqttServer, mqttPort);
     client.setCallback(callback);
+    a2dpSink.start("ESP32_AudioSink");
+    a2dpSink.set_stream_reader(audioDataCallback, false);
+    a2dpSink.set_on_data_received(data_received_callback);
     irSetup();
     reconnect();
+    wsUrl = "ws://";
+    wsUrl += WiFi.localIP().toString();
+    wsUrl += ":81/ws"; // Assuming WebSocket server is on port 81 and path "/ws"
+    Serial.println("Wifi, MQTT, Bluetooth, and IR setup complete");
 }
 
 void loop() {
@@ -74,9 +98,11 @@ void loop() {
         reconnect();
     }
     initDebug();
+    webSocket.loop();
     client.loop();
     delay(10);
 }
+
 
 
 

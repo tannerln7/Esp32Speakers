@@ -93,19 +93,39 @@
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/log/include/esp_log.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/log/include/esp_log_internal.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_system/include/esp_task_wdt.h \
- C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-log.h \
- C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-bt.h \
- C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal.h \
- C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/esp_sleep.h \
- C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/touch_sensor_types.h \
- C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/gpio_types.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/driver/include/driver/i2s.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/semphr.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/queue.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/include/soc/i2s_periph.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/periph_defs.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/i2s_struct.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/i2s_reg.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/include/soc/rtc_periph.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/include/soc/rtc_io_periph.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/rtc_io_channel.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/rtc_io_reg.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/rtc_io_struct.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/rtc_cntl_reg.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/rtc_cntl_struct.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/sens_struct.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/i2s_types.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/driver/include/driver/periph_ctrl.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/esp_intr_alloc.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/driver/include/driver/adc.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/driver/include/driver/gpio.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/include/soc/gpio_periph.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/io_mux_reg.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/gpio_struct.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/gpio_reg.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/gpio_sig_map.h \
- C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/semphr.h \
- C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/queue.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/gpio_types.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_rom/include/esp32/rom/gpio.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/adc_types.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-log.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-bt.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/esp_sleep.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/touch_sensor_types.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/event_groups.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/freertos/include/freertos/timers.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-log.h \
@@ -115,9 +135,6 @@
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/variants/esp32/pins_arduino.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-touch.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-dac.h \
- C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/driver/include/driver/gpio.h \
- C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_hw_support/include/esp_intr_alloc.h \
- C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_rom/include/esp32/rom/gpio.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-adc.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-spi.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-i2c.h \

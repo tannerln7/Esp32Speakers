@@ -216,6 +216,71 @@
  .pio/libdeps/Controller/ESP32-A2DP/src/SoundData.h \
  .pio/libdeps/Controller/ESP32-A2DP/src/A2DPVolumeControl.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_system/include/esp_task_wdt.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/driver/include/driver/i2s.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/include/soc/i2s_periph.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/periph_defs.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/i2s_struct.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/i2s_reg.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/include/soc/rtc_periph.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/include/soc/rtc_io_periph.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/rtc_io_channel.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/rtc_io_reg.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/rtc_io_struct.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/rtc_cntl_reg.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/rtc_cntl_struct.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/sens_struct.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/i2s_types.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/driver/include/driver/periph_ctrl.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/driver/include/driver/adc.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/adc_types.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-log.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-bt.h \
- src/Controller/include/IRTask.h
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_ringbuf/include/freertos/ringbuf.h \
+ src/Controller/include/IRTask.h \
+ .pio/libdeps/Controller/WebSockets/src/WebSocketsServer.h \
+ .pio/libdeps/Controller/WebSockets/src/WebSockets.h \
+ .pio/libdeps/Controller/WebSockets/src/WebSocketsVersion.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src/WiFiClientSecure.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/libraries/WiFiClientSecure/src/ssl_client.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/platform.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/port/include/mbedtls/esp_config.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/config.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/check_config.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/port/include/esp_mem.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/platform_time.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/net.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/net_sockets.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/ssl.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/port/include/mbedtls/bignum.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/bignum.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/ecp.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/ssl_ciphersuites.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/pk.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/md.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/platform_util.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/rsa.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/ecdsa.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/cipher.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/x509_crt.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/x509.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/asn1.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/x509_crl.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/dhm.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/ecdh.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/debug.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/entropy.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/sha512.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/port/include/sha512_alt.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/sha_types.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/esp_rom/include/esp32/rom/sha.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/ctr_drbg.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/aes.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/port/include/aes_alt.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/port/include/aes/esp_aes.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/aes_types.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/mbedtls/mbedtls/include/mbedtls/error.h \
+ .pio/libdeps/Controller/AsyncTCP/src/AsyncTCP.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/lwip/lwip/src/include/lwip/pbuf.h \
+ src/Controller/include/websocket.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFiMulti.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/libraries/WiFi/src/WiFi.h
