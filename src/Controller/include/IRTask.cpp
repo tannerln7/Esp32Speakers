@@ -24,14 +24,14 @@ void irSetup() {
     xTaskCreate(
             IRReceiverTask,  /* Task function. */
             "IRReceiverTask",  /* String with name of task. */
-            10000,  /* Stack size in bytes. */
+            3000,  /* Stack size in bytes. */
             nullptr,  /* Parameter passed as input of the task */
             1,  /* Priority of the task. */
             nullptr  /* Task handle. */
     );
 }
 
-void IRReceiverTask(void * parameter) {
+[[noreturn]] void IRReceiverTask(void * parameter) {
     for (;;) {
         if (IrReceiver.decode()) {
             IrReceiver.printIRResultShort(&Serial);
@@ -64,6 +64,7 @@ void IRReceiverTask(void * parameter) {
                 handleIRCode(IrReceiver.decodedIRData.decodedRawData);
             }
             IrReceiver.resume(); // Enable receiving of the next value
+            vTaskDelay(10 / portTICK_PERIOD_MS);
         }
     }
 }

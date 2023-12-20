@@ -8,7 +8,7 @@
 #include <PubSubClient.h>
 #include <Arduino.h>
 
-extern PubSubClient client(espClient);
+extern PubSubClient client;
 
 void reconnect();
 void mqttCallback(const char* topic, byte* payload, unsigned int length);

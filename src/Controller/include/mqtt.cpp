@@ -4,14 +4,14 @@
 
 #include "mqtt.h"
 
-const char* mqttServer = "mainsail.local";
-const int mqttPort = 1883;
 const char* mqttUser = "tannerln7";
 const char* mqttPassword = "Muspotaebo1324";
 const char* leftTopic = "home/livingroom/left/command";
 const char* leftAckTopic = "home/livingroom/left/ack";
 const char* rightTopic = "home/livingroom/right/command";
 const char* rightAckTopic = "home/livingroom/right/ack";
+
+extern void handleCallback(String topic, String &msg);
 
 void reconnect() {
     while (!client.connected()) {

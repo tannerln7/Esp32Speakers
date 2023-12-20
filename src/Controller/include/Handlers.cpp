@@ -36,6 +36,7 @@ extern WiFiClient espClient;
 extern PubSubClient client;
 
 
+
 float mapLinearToDb(float linearVolume) {
     return 20 * log10(linearVolume);
 }

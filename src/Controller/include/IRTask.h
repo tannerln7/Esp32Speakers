@@ -7,5 +7,5 @@
 
 #endif //ESP32SPEAKERS_IRTASK_H
 
-void IRReceiverTask(void * parameter);
+[[noreturn]] void IRReceiverTask(void * parameter);
 void irSetup();
