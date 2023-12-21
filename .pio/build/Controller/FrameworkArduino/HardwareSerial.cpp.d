@@ -1,6 +1,6 @@
 .pio/build/Controller/FrameworkArduino/HardwareSerial.cpp.o: \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/HardwareSerial.cpp \
- C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/variants/esp32/pins_arduino.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/variants/adafruit_qtpy_esp32/pins_arduino.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/io_pin_remap.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/Arduino.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp_arduino_version.h \

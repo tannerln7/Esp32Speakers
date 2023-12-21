@@ -100,7 +100,7 @@
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-psram.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-rgb-led.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-cpu.h \
- C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/variants/esp32/pins_arduino.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/variants/adafruit_qtpy_esp32/pins_arduino.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/include/hal/gpio_hal.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/hal/esp32/include/hal/gpio_ll.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/tools/sdk/esp32/include/soc/esp32/include/soc/rtc_cntl_reg.h \

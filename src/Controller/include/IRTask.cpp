@@ -24,7 +24,7 @@ void irSetup() {
     xTaskCreate(
             IRReceiverTask,  /* Task function. */
             "IRReceiverTask",  /* String with name of task. */
-            3000,  /* Stack size in bytes. */
+            10000,  /* Stack size in bytes. */
             nullptr,  /* Parameter passed as input of the task */
             1,  /* Priority of the task. */
             nullptr  /* Task handle. */

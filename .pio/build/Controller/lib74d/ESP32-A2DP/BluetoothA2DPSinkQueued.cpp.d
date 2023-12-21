@@ -134,7 +134,7 @@
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-matrix.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-uart.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-gpio.h \
- C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/variants/esp32/pins_arduino.h \
+ C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/variants/adafruit_qtpy_esp32/pins_arduino.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-touch.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-dac.h \
  C:/Users/tanne/.platformio/packages/framework-arduinoespressif32/cores/esp32/esp32-hal-adc.h \

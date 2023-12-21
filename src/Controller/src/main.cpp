@@ -8,33 +8,20 @@
 
 WiFiClient espClient;
 PubSubClient client(espClient);
-const char* mqttServer = "mainsail.local";
+const char* mqttServer = "192.168.1.81";
 const int mqttPort = 1883;
-
-QueueHandle_t audioQueue;
 BluetoothA2DPSink a2dp_sink;
+
 void setup() {
     Serial.begin(115200);
     wifiSetup();
-    establishTCPConnection();
-    client.setServer(mqttServer, mqttPort);
+    client.setServer(IPAddress(192, 168, 1, 81), mqttPort);
     client.setCallback(mqttCallback);
-    irSetup();
     reconnect();
-    // Initialize the queue
-    audioQueue = xQueueCreate(10, sizeof(AudioData));  // Adjust the size as needed
-
-    // Check if queue creation was successful
-    if (audioQueue == nullptr) {
-        // Handle queue creation failure
-        Serial.println("Failed to create audio queue");
-        return;
-    }
+    establishTCPConnection();
+    irSetup();
     a2dp_sink.set_volume(80);
     a2dp_sink.set_avrc_connection_state_callback(avrc_connection_state_callback);
-
-    // Start the audio processing task
-    xTaskCreate(audioProcessingTask, "AudioProcessingTask", 10000, nullptr, 10, nullptr);
     a2dp_sink.set_stream_reader(callbackToReceiveData, false);
     a2dp_sink.start("MyMusic", false);
 }
@@ -49,10 +36,11 @@ void loop() {
     if (!client.connected()) {
         reconnect();
     }
-    initDebug();
     client.loop();
-    delay(100);
+    delay(10);
 }
+
+
 
 
 

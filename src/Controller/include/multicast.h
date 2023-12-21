@@ -25,4 +25,6 @@ void callbackToReceiveData(const uint8_t *data, uint32_t length);
 void establishTCPConnection();
 void avrc_connection_state_callback(bool connected);
 
+[[noreturn]] void sendBufferTask(void *pvParameters);
+
 #endif //SPEAKERS_MULTICAST_H
