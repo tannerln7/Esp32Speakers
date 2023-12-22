@@ -2,54 +2,64 @@
 // Created by Tanner on 12/19/2023.
 //
 
-// Updated Code Snippet
-
 #include "multicast.h"
+#include <array>
 
-const int sampleRate = 44100;  // Sample rate in Hz
-const int channels = 2;        // Stereo
-const int chunkTimeMs = 50;   // Desired chunk size in milliseconds
-const int bytesPerSample = 4;  // 16-bit stereo audio
 
-extern WiFiClient espClient;
 extern BluetoothA2DPSink a2dp_sink;
+AudioBuffer buffer1 = AudioBuffer(44100, 16, 2, 20);
+AudioBuffer buffer2 = AudioBuffer(44100, 16, 2, 20);
+AudioBuffer* fillBuffer = &buffer1;
+AudioBuffer* sendBuffer = &buffer2;
 
-void establishTCPConnection() {
-    while (!espClient.connect(IPAddress(192, 168, 1, 81), 1234)) {
+bool establishTCPConnection() {
+    int i = 0;
+    while (!espClient.connected() && WiFi.status() == WL_CONNECTED && i < 5) {
         Serial.println("Attempting to connect to TCP server...");
-        delay(1000);  // Wait for 5 seconds before retrying
-    }
-    Serial.println("Connected to TCP server");
-}
-
-void callbackToReceiveData(const uint8_t *data, uint32_t length) {
-    // Calculate the chunk size based on the desired ms
-    const uint32_t chunkSize = (sampleRate / 1000) * chunkTimeMs * bytesPerSample;
-    Serial.println("Received data - size: " + (String) length + " bytes");
-
-    // Process the entire length of received data
-    for (uint32_t i = 0; i < length; i += chunkSize) {
-        // Calculate the size of the current segment
-        uint32_t segmentSize = min(chunkSize, length - i);
-
-        // Check if TCP client is connected before sending
-        if (!espClient.connected()) {
-            Serial.println("TCP client not connected.");
-            establishTCPConnection();
-            return;
+        if (espClient.connect(IPAddress(192, 168, 1, 81), 1234)) {
+            Serial.println("Connected to TCP server.");
+            return true;
         }
+        else {
+            Serial.println("Failed to connect to TCP server. Retrying in 1 second...");
+            delay(1000);
+            i++;
+        }
+    }
+    if (espClient.connected()){
+        Serial.println("Connected to TCP server.");
+        return true;
+    }
+    Serial.println("Failed to connect to TCP server.");
+    return false;
+}
 
-        // Send the segment directly to the TCP server
-        espClient.write(data + i, segmentSize);
-        Serial.println("Sent segment of data - size: " + (String) segmentSize + " bytes");
+void callbackToReceiveData(const uint8_t *data, const uint32_t length) {
+    // Lock the fill buffer mutex
+    fillBuffer->lockBuffer();
+    if (fillBuffer->appendData(data, length) == -1) {
+        // Swap buffers
+        std::swap(fillBuffer, sendBuffer);
+        // Reset the fillBuffer index
+        fillBuffer->ResetFillIndex();
+        // Unlock the fill buffer mutex
+        fillBuffer->unlockBuffer();
+        // Append the data to the new fillBuffer
+        fillBuffer->appendData(data, length);
+        // Create the sendBufferTcp task and pass sendBuffer as a parameter
+        xTaskCreate(sendBufferTcp, "sendBufferTask", 1024, nullptr, 1, nullptr);
+    }else{
+        fillBuffer->appendData(data, length);
     }
 }
 
 
-void avrc_connection_state_callback(bool connected) {
+
+
+    void avrc_connection_state_callback(bool connected) {
     if (connected) {
         if (!espClient.connected()) {
-            Serial.println("Lost TCP connection. Attempting to reconnect...");
+            Serial.println("Bluetooth device connected, connecting to TCP server...");
             establishTCPConnection();
         }
     }

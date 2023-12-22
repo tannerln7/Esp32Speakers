@@ -5,7 +5,7 @@
   </component>
   <component name="CMakeRunConfigurationManager">
     <generated>
-      <config projectName="esp32Speakers" targetName="PlatformIO" />
+      <config projectName="Speakers" targetName="PlatformIO" />
     </generated>
   </component>
   <component name="CMakeSettings">
@@ -15,148 +15,163 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="fd58d8ef-2135-42cc-98fd-0316cba02f47" name="Changes" comment="tcp is slow">
+      <change afterPath="$PROJECT_DIR$/.idea/Speakers.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/.sconsign311.dblite" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/.sconsign311.dblite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/Esp.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/Esp.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/Esp.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/Esp.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/FirmwareMSC.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/FirmwareMSC.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/FunctionalInterrupt.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/FunctionalInterrupt.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/FunctionalInterrupt.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/FunctionalInterrupt.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/HWCDC.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/HWCDC.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/HardwareSerial.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/HardwareSerial.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/HardwareSerial.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/HardwareSerial.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/IPAddress.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/IPAddress.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/IPAddress.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/IPAddress.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/IPv6Address.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/IPv6Address.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/IPv6Address.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/IPv6Address.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/MD5Builder.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/MD5Builder.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/MD5Builder.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/MD5Builder.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/Print.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/Print.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/Print.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/Print.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/Stream.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/Stream.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/Stream.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/Stream.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/StreamString.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/StreamString.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/StreamString.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/StreamString.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/Tone.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/Tone.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/Tone.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/Tone.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/USB.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/USB.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/USBCDC.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/USBCDC.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/USBMSC.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/USBMSC.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/WMath.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/WMath.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/WString.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/WString.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/WString.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/WString.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/base64.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/base64.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/base64.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/base64.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/cbuf.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/cbuf.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-adc.c.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-adc.c.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-adc.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-adc.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-bt.c.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-bt.c.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-bt.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-bt.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-cpu.c.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-cpu.c.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-cpu.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-cpu.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-dac.c.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-dac.c.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-dac.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-dac.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-gpio.c.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-gpio.c.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-gpio.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-gpio.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-i2c-slave.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-i2c-slave.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-i2c.c.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-i2c.c.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-i2c.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-i2c.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-ledc.c.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-ledc.c.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-ledc.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-ledc.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-matrix.c.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-matrix.c.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-matrix.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-matrix.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-misc.c.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-misc.c.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-misc.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-misc.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-psram.c.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-psram.c.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-psram.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-psram.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-rgb-led.c.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-rgb-led.c.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-rgb-led.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-rgb-led.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-rmt.c.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-rmt.c.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-rmt.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-rmt.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-sigmadelta.c.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-sigmadelta.c.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-sigmadelta.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-sigmadelta.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-spi.c.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-spi.c.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-spi.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-spi.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-time.c.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-time.c.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-time.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-time.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-timer.c.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-timer.c.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-timer.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-timer.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-tinyusb.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-tinyusb.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-touch.c.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-touch.c.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-touch.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-touch.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-uart.c.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-uart.c.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-uart.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-uart.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/firmware_msc_fat.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/firmware_msc_fat.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/libb64/cdecode.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/libb64/cdecode.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/libb64/cencode.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/libb64/cencode.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/main.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/main.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/main.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/stdlib_noniso.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/stdlib_noniso.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/wiring_pulse.c.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/wiring_pulse.c.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/wiring_pulse.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/wiring_pulse.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/wiring_shift.c.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/wiring_shift.c.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/wiring_shift.c.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/wiring_shift.c.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/bootloader.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/bootloader.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/firmware.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/firmware.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/firmware.elf" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/firmware.elf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/firmware.map" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/firmware.map" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/idedata.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib148/PubSubClient/PubSubClient.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/lib148/PubSubClient/PubSubClient.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib148/PubSubClient/PubSubClient.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/lib148/PubSubClient/PubSubClient.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib148/libPubSubClient.a" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/lib148/libPubSubClient.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib74d/ESP32-A2DP/BluetoothA2DPCommon.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/lib74d/ESP32-A2DP/BluetoothA2DPCommon.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib74d/ESP32-A2DP/BluetoothA2DPCommon.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/lib74d/ESP32-A2DP/BluetoothA2DPCommon.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib74d/ESP32-A2DP/BluetoothA2DPSink.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/lib74d/ESP32-A2DP/BluetoothA2DPSink.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib74d/ESP32-A2DP/BluetoothA2DPSink.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/lib74d/ESP32-A2DP/BluetoothA2DPSink.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib74d/ESP32-A2DP/BluetoothA2DPSinkQueued.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/lib74d/ESP32-A2DP/BluetoothA2DPSinkQueued.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib74d/ESP32-A2DP/BluetoothA2DPSinkQueued.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/lib74d/ESP32-A2DP/BluetoothA2DPSinkQueued.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib74d/ESP32-A2DP/BluetoothA2DPSource.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/lib74d/ESP32-A2DP/BluetoothA2DPSource.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib74d/ESP32-A2DP/BluetoothA2DPSource.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/lib74d/ESP32-A2DP/BluetoothA2DPSource.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib74d/ESP32-A2DP/SoundData.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/lib74d/ESP32-A2DP/SoundData.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib74d/libESP32-A2DP.a" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/lib74d/libESP32-A2DP.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib930/AsyncTCP/AsyncTCP.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/lib930/AsyncTCP/AsyncTCP.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib930/AsyncTCP/AsyncTCP.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/lib930/AsyncTCP/AsyncTCP.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib930/libAsyncTCP.a" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/lib930/libAsyncTCP.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libFrameworkArduino.a" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/libFrameworkArduino.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFi.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFi.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFi.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFi.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiAP.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiAP.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiAP.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiAP.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiClient.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiClient.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiClient.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiClient.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiGeneric.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiGeneric.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiGeneric.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiGeneric.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiMulti.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiMulti.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiMulti.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiMulti.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiSTA.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiSTA.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiSTA.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiSTA.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiScan.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiScan.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiScan.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiScan.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiServer.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiServer.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiServer.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiServer.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiUdp.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiUdp.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiUdp.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiUdp.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/libWiFi.a" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/libb9a/libWiFi.a" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/include/Handlers.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/include/Handlers.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/include/Handlers.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/include/Handlers.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/include/IRTask.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/include/IRTask.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/include/IRTask.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/include/IRTask.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/include/Loops.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/include/Loops.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/include/Loops.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/include/Loops.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/.sconsign311.dblite" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/Esp.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/Esp.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/FirmwareMSC.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/FirmwareMSC.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/FunctionalInterrupt.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/FunctionalInterrupt.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/HWCDC.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/HWCDC.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/HardwareSerial.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/HardwareSerial.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/IPAddress.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/IPAddress.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/IPv6Address.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/IPv6Address.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/MD5Builder.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/MD5Builder.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/Print.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/Print.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/Stream.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/Stream.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/StreamString.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/StreamString.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/Tone.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/Tone.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/USB.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/USB.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/USBCDC.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/USBCDC.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/USBMSC.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/USBMSC.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/WMath.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/WMath.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/WString.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/WString.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/base64.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/base64.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/cbuf.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/cbuf.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-adc.c.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-adc.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-bt.c.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-bt.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-cpu.c.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-cpu.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-dac.c.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-dac.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-gpio.c.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-gpio.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-i2c-slave.c.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-i2c-slave.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-i2c.c.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-i2c.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-ledc.c.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-ledc.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-matrix.c.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-matrix.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-misc.c.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-misc.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-psram.c.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-psram.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-rgb-led.c.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-rgb-led.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-rmt.c.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-rmt.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-sigmadelta.c.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-sigmadelta.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-spi.c.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-spi.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-time.c.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-time.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-timer.c.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-timer.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-tinyusb.c.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-tinyusb.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-touch.c.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-touch.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-uart.c.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/esp32-hal-uart.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/firmware_msc_fat.c.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/firmware_msc_fat.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/libb64/cdecode.c.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/libb64/cdecode.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/libb64/cencode.c.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/libb64/cencode.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/main.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/main.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/stdlib_noniso.c.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/stdlib_noniso.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/wiring_pulse.c.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/wiring_pulse.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/wiring_shift.c.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduino/wiring_shift.c.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduinoVariant/variant.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduinoVariant/variant.cpp.d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduinoVariant/variant.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/FrameworkArduinoVariant/variant.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/bootloader.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/firmware.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/firmware.elf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/firmware.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib148/PubSubClient/PubSubClient.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib148/PubSubClient/PubSubClient.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib148/libPubSubClient.a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib74d/ESP32-A2DP/BluetoothA2DPCommon.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib74d/ESP32-A2DP/BluetoothA2DPCommon.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib74d/ESP32-A2DP/BluetoothA2DPSink.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib74d/ESP32-A2DP/BluetoothA2DPSink.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib74d/ESP32-A2DP/BluetoothA2DPSinkQueued.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib74d/ESP32-A2DP/BluetoothA2DPSinkQueued.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib74d/ESP32-A2DP/BluetoothA2DPSource.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib74d/ESP32-A2DP/BluetoothA2DPSource.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib74d/ESP32-A2DP/SoundData.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib74d/ESP32-A2DP/SoundData.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib74d/libESP32-A2DP.a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib930/AsyncTCP/AsyncTCP.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib930/AsyncTCP/AsyncTCP.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/lib930/libAsyncTCP.a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libFrameworkArduino.a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFi.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFi.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiAP.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiAP.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiClient.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiClient.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiGeneric.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiGeneric.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiMulti.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiMulti.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiSTA.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiSTA.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiScan.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiScan.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiServer.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiServer.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiUdp.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/WiFi/WiFiUdp.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/libb9a/libWiFi.a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/partitions.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/include/Handlers.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/include/Handlers.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/include/IRTask.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/include/IRTask.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/include/Loops.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/include/Loops.cpp.o" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/include/mqtt.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/include/mqtt.cpp.d" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/include/mqtt.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/include/mqtt.cpp.o" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/include/multicast.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/include/multicast.cpp.d" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/include/multicast.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/include/multicast.cpp.o" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/src/main.cpp.d" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/src/main.cpp.d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/src/main.cpp.o" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/src/main.cpp.o" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/src/main.cpp.d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/src/Controller/src/main.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/tmp2dcm2znr.tmp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.pio/build/Controller/tmpr32a8nm9.tmp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.pio/build/project.checksum" beforeDir="false" afterPath="$PROJECT_DIR$/.pio/build/project.checksum" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/platformio.ini" beforeDir="false" afterPath="$PROJECT_DIR$/platformio.ini" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/include/Handlers.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Handlers.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/include/IRTask.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/IRTask.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/include/Loops.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/Loops.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/include/multicast.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/multicast.cpp" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Controller/include/multicast.h" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/include/multicast.h" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controller/src/main.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controller/src/main.cpp" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -214,6 +229,13 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GithubProjectSettings">
+    <option name="branchProtectionPatterns">
+      <list>
+        <option value="master" />
+      </list>
+    </option>
+  </component>
   <component name="HighlightingSettingsPerFile">
     <setting file="file://$PROJECT_DIR$/lib/painlessMesh/src/painlessmesh/configuration.hpp" root0="FORCE_HIGHLIGHTING" />
   </component>
@@ -231,14 +253,14 @@
         <entry>
           <key>
             <ExternalProjectPojo>
-              <option name="name" value="esp32Speakers" />
+              <option name="name" value="Speakers" />
               <option name="path" value="$PROJECT_DIR$" />
             </ExternalProjectPojo>
           </key>
           <value>
             <list>
               <ExternalProjectPojo>
-                <option name="name" value="esp32Speakers" />
+                <option name="name" value="Speakers" />
                 <option name="path" value="$PROJECT_DIR$" />
               </ExternalProjectPojo>
             </list>
@@ -273,31 +295,33 @@
     <option name="showLibraryContents" value="true" />
     <option name="showScratchesAndConsoles" value="false" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;cf.advertisement.text.has.clang-format&quot;: &quot;true&quot;,
-    &quot;cf.first.check.clang-format&quot;: &quot;false&quot;,
-    &quot;cidr.known.project.marker&quot;: &quot;true&quot;,
-    &quot;com.jetbrains.cidr.cpp.cmake.workspace.CMakeCacheInvalidator.marker&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;beta&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/tanne/Documents/PlatformIO/Projects/esp32Speakers/.pio&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;CodeStatsConfigurable&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.RadMigrateCodeStyle": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.cidr.known.project.marker": "true",
+    "RunOnceActivity.readMode.enableVisualFormatting": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "cf.advertisement.text.has.clang-format": "true",
+    "cf.first.check.clang-format": "false",
+    "cidr.known.project.marker": "true",
+    "com.jetbrains.cidr.cpp.cmake.workspace.CMakeCacheInvalidator.marker": "true",
+    "git-widget-placeholder": "beta",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Users/tanne/Documents/PlatformIO/Projects/esp32Speakers/.pio",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "ml.llm.AIAssistantPromptsLibrary",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\tanne\Documents\PlatformIO\Projects\esp32Speakers\src\Right\include" />
@@ -320,7 +344,19 @@
         <option name="CLION.EXTERNAL.BUILD" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PlatformIO" type="platformio" factoryName="PlatformIO Debug" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="esp32Speakers" TARGET_NAME="PlatformIO" CONFIG_NAME="PlatformIO">
+    <configuration name="PlatformIO" type="platformio" factoryName="PlatformIO Debug" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Speakers" TARGET_NAME="PlatformIO" CONFIG_NAME="PlatformIO">
+      <method v="2" />
+    </configuration>
+    <configuration name="PlatformIO" type="platformio" factoryName="PlatformIO Debug" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Speakers" TARGET_NAME="PlatformIO" CONFIG_NAME="PlatformIO">
+      <method v="2" />
+    </configuration>
+    <configuration name="PlatformIO" type="platformio" factoryName="PlatformIO Debug" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Speakers" TARGET_NAME="PlatformIO" CONFIG_NAME="PlatformIO">
+      <method v="2" />
+    </configuration>
+    <configuration name="PlatformIO" type="platformio" factoryName="PlatformIO Debug" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Speakers" TARGET_NAME="PlatformIO" CONFIG_NAME="PlatformIO">
+      <method v="2" />
+    </configuration>
+    <configuration name="PlatformIO" type="platformio" factoryName="PlatformIO Debug" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="Speakers" TARGET_NAME="PlatformIO" CONFIG_NAME="PlatformIO">
       <method v="2" />
     </configuration>
     <configuration name="PlatformIO" type="platformio" factoryName="PlatformIO Debug" REDIRECT_INPUT="false" ELEVATE="false" USE_EXTERNAL_CONSOLE="false" EMULATE_TERMINAL="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="esp32Speakers" TARGET_NAME="PlatformIO" CONFIG_NAME="PlatformIO">
@@ -365,6 +401,11 @@
       <workItem from="1702610447102" duration="604000" />
       <workItem from="1702867586436" duration="18518000" />
       <workItem from="1703014800122" duration="50500000" />
+      <workItem from="1703176915785" duration="1270000" />
+      <workItem from="1703178201905" duration="7177000" />
+      <workItem from="1703264105486" duration="103000" />
+      <workItem from="1703264226112" duration="452000" />
+      <workItem from="1703264686999" duration="16353000" />
     </task>
     <task id="LOCAL-00001" summary="commit">
       <option name="closed" value="true" />
