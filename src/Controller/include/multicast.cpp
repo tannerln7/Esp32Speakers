@@ -7,14 +7,15 @@
 
 
 extern BluetoothA2DPSink a2dp_sink;
-AudioBuffer buffer1 = AudioBuffer(44100, 16, 2, 20);
-AudioBuffer buffer2 = AudioBuffer(44100, 16, 2, 20);
-AudioBuffer* fillBuffer = &buffer1;
-AudioBuffer* sendBuffer = &buffer2;
+extern AudioBuffer buffer1;
+extern AudioBuffer buffer2;
+extern AudioBuffer* fillBuffer;
+extern AudioBuffer* sendBuffer;
+
 
 bool establishTCPConnection() {
     int i = 0;
-    while (!espClient.connected() && WiFi.status() == WL_CONNECTED && i < 5) {
+    while (!espClient.connected() && i < 5) {
         Serial.println("Attempting to connect to TCP server...");
         if (espClient.connect(IPAddress(192, 168, 1, 81), 1234)) {
             Serial.println("Connected to TCP server.");
@@ -26,30 +27,33 @@ bool establishTCPConnection() {
             i++;
         }
     }
-    if (espClient.connected()){
-        Serial.println("Connected to TCP server.");
-        return true;
-    }
     Serial.println("Failed to connect to TCP server.");
     return false;
 }
 
 void callbackToReceiveData(const uint8_t *data, const uint32_t length) {
-    // Lock the fill buffer mutex
-    fillBuffer->lockBuffer();
+    // check if the buffer is full
     if (fillBuffer->appendData(data, length) == -1) {
         // Swap buffers
         std::swap(fillBuffer, sendBuffer);
-        // Reset the fillBuffer index
-        fillBuffer->ResetFillIndex();
-        // Unlock the fill buffer mutex
-        fillBuffer->unlockBuffer();
-        // Append the data to the new fillBuffer
-        fillBuffer->appendData(data, length);
-        // Create the sendBufferTcp task and pass sendBuffer as a parameter
-        xTaskCreate(sendBufferTcp, "sendBufferTask", 1024, nullptr, 1, nullptr);
-    }else{
-        fillBuffer->appendData(data, length);
+        Serial.println("Buffers swapped");
+
+        // Send the buffer to the send queue
+        if (!xQueueSend(sendQueue, &(sendBuffer), (TickType_t) 10)) {
+            Serial.println("Failed to post the message, even after 10 ticks");
+        } else {
+            Serial.println("Full buffer sent to queue.");
+            // Reset the fill buffer upon successful sending
+            fillBuffer->resetBuffer();
+            Serial.println("Buffer reset");
+
+            // Append the data to the new fillBuffer
+            if (fillBuffer->appendData(data, length) == -1) {
+                Serial.println("Failed to append data to buffers.");
+            }else{
+                Serial.println("Data appended to new buffer.");
+            }
+        }
     }
 }
 

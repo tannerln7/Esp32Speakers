@@ -4,7 +4,6 @@
 
 #ifndef SPEAKERS_MULTICAST_H
 #define SPEAKERS_MULTICAST_H
-#pragma once
 #include <Arduino.h>
 #include "BluetoothA2DPSink.h"
 #include <WiFi.h>
@@ -15,10 +14,10 @@
 #include <vector>
 #include <mutex>
 
-void callbackToReceiveData(const uint8_t *data, uint32_t length);
+void callbackToReceiveData(const uint8_t *data,  uint32_t length);
 bool establishTCPConnection();
 void avrc_connection_state_callback(bool connected);
-
+extern QueueHandle_t sendQueue;
 extern WiFiClient espClient;
 
 class AudioBuffer {
@@ -40,8 +39,6 @@ public:
         vSemaphoreDelete(Buffer_mutex);
     }
 
-    // Delete copy constructor and copy assignment operator
-    //AudioBuffer(const AudioBuffer&) = delete;
     AudioBuffer& operator=(const AudioBuffer&) = delete;
 
 public:
@@ -53,6 +50,7 @@ public:
             return false;
         }else {
             // Return true to indicate success
+            Serial.println("Buffer locked.");
             return true;
         }
     }
@@ -65,67 +63,80 @@ public:
             return false;
         }else{
             // Return true to indicate success
+            Serial.println("Buffer unlocked.");
             return true;
         }
+    }
+
+    void resetBuffer() {
+        if (!lockBuffer()) {
+            Serial.println("Failed to lock buffer.");
+            return; // Return if the buffer is not locked
+        }
+        fillIndex = 0;
+        std::fill(buffer.begin(), buffer.end(), 0);
+        unlockBuffer();
     }
 
     int appendData(const uint8_t* data, const uint32_t length) {
-        // Check if the buffer will overflow
-        if(isFull(length)) {
-            Serial.println("Buffer is overflowed.");
-            return -1; // Return -1 to indicate buffer overflow
-        }
-
-        // Attempt to lock the buffer
         if (!lockBuffer()) {
-            return -2; // Return -2 to indicate failed to lock the buffer
+            // Return -2 to indicate failed to lock the buffer
+            Serial.println("Failed to lock buffer.");
+            return -2;
         }
-
-        // Copy the data into the buffer
+        if(fillIndex + length > bufferSize){
+            Serial.println("Buffer full.");
+            Serial.println("fillIndex: " + String(fillIndex) + " length: " + String(length) + " bufferSize: " + String(bufferSize));
+            unlockBuffer();
+            return -1; // Buffer overflow
+        }
         std::copy(data, data + length, buffer.begin() + fillIndex);
         fillIndex += length;
-
-        // Attempt to unlock the buffer
         if (!unlockBuffer()) {
-            return -3; // Return -3 to indicate failed to unlock the buffer
+            return -3; // Failed to unlock the buffer
         }
-
-        return 0; // Return 0 to indicate success
+        Serial.println("Data appended to buffer.");
+        return 0; // Success
     }
 
     bool isFull(const uint32_t length) const {
-        // Check if the buffer will overflow
-        if(fillIndex + length > GetBufferSize()){
-            Serial.println("Buffer will overflow.");
-            // Return true to indicate buffer overflow
+        if (xSemaphoreTake(Buffer_mutex, portMAX_DELAY) != pdTRUE) {
+            Serial.println("Failed to lock buffer with semaphore.");
             return true;
-        }else{
-            // Return false to indicate buffer will not overflow
-            return false;}
-    }
-    int GetBufferSize() const { return bufferSize; }
-    void ResetFillIndex() {
-        fillIndex = 0;
-    }
-    void sendBufferTcp(void *pvParameters) {
-        // Check if the TCP client is connected
-        if(!espClient.connected()){
-            establishTCPConnection();
         }
-        // Lock the buffer mutex
-        if (!lockBuffer()) {
-            Serial.println("Buffer is locked by another process. Packet dropped.");
-            return;
-        } else {
-            Serial.print("TCP packet sent - size: ");
-            // Send the buffer over TCP
-            Serial.println(espClient.write(buffer.data(), fillIndex));
-            // Reset the fill index
-            fillIndex = 0;
-            // Unlock the send buffer mutex
-            unlockBuffer();
-            // Delete the task
-            vTaskDelete(nullptr);
+
+        bool isFull = fillIndex + length > bufferSize;
+
+        if (isFull) {
+            Serial.println("Buffer will overflow.");
+        }
+
+        xSemaphoreGive(Buffer_mutex);
+
+        return isFull;
+    }
+
+    [[noreturn]] static void sendBufferTcpTask(void *pvParameters) {
+        while(true){
+            std::shared_ptr<AudioBuffer> buffer;
+            if(xQueueReceive(sendQueue, &(buffer), (TickType_t) portMAX_DELAY))
+            {
+                if(buffer){
+                    if(!espClient.connected()){
+                        if(!establishTCPConnection()){
+                            continue;
+                        }
+                    }
+                    if(!buffer->lockBuffer()){
+                        continue;
+                    }
+                    Serial.println("TCP packet sent - size: ");
+                    Serial.println(espClient.write(buffer->buffer.data(), buffer->fillIndex));
+                    buffer->resetBuffer();
+                    buffer->unlockBuffer();
+                    vTaskDelay(5);
+                }
+            }
         }
     }
 
@@ -135,7 +146,7 @@ private:
     const int bytesPerSample;
     int chunkTimeMs;
     int bufferSize;
-    int fillIndex;
+    uint32_t fillIndex;
     std::vector<uint8_t> buffer;
     SemaphoreHandle_t Buffer_mutex;
 };

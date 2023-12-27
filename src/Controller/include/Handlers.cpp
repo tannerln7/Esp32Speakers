@@ -5,16 +5,9 @@
 #include <Handlers.h>
 
 #define MAX_RETRY_COUNT 5
-float currentLinearVolume = START_VOLUME;
-float currentVolumeDb = mapLinearToDb(START_VOLUME);
-float currentLinearSubVolume = START_SUB_VOLUME;
-float currentSubVolumeDb = mapLinearToDb(START_SUB_VOLUME);
 float muteState = START_MUTE;
 float currentSource = START_SOURCE;
 
-const float VOLUME_STEP = 0.04f;
-const float FINAL_DECREMENT = 0.03683772f;
-const float MINIMUM_POSSIBLE_VOLUME = 0.04f - FINAL_DECREMENT;
 
 String leftLastMessage = "";
 String rightLastMessage = "";
@@ -35,9 +28,27 @@ const char* timeTopic = "home/livingroom/time";
 extern WiFiClient espClient;
 extern PubSubClient client;
 
+// Global variable for slider position
+double sliderPosition = -50.0; // Starting from 0 (silent)
+double subSliderPosition = -50.0;
+float currentVolumeDb;
+float currentSubVolumeDb;
+// Constants for the exponential curve
+const double a = 0.001;
+const double b = 6.908;
 
-float mapLinearToDb(float linearVolume) {
-    return 20 * log10(linearVolume);
+// Volume control function
+double volumeControl(double position) {
+    // Clamp slider position to [0, 1]
+    sliderPosition = max(min(position, 1.0), 0.0);
+
+    // Apply linear roll-off to zero for positions less than 0.1
+    if (sliderPosition < 0.1) {
+        return sliderPosition * 10 * a * exp(0.1 * b);
+    }
+
+    // Use exponential curve for positions 0.1 and above
+    return a * exp(b * sliderPosition);
 }
 
 void handleCallback(String topic, String &msg) {
@@ -78,11 +89,6 @@ void handleCallback(String topic, String &msg) {
     }
 }
 
-
-unsigned long abs_diff(unsigned long a, unsigned long b) {
-    return (a > b) ? (a - b) : (b - a);
-}
-
 void handleAck(String &topic, float &currentValue, const float &receivedValue) {
     bool isSame = (String(currentValue) == String(receivedValue));
     if (isSame) {
@@ -114,15 +120,6 @@ void handleAck(String &topic, float &currentValue, const float &receivedValue) {
 void handleTime(String &topic, String &value1) {
     unsigned long currentTimeMillis = millis();
     unsigned long receivedTime = value1.toInt();
-    bool isTimeWithinTolerance = abs_diff(currentTimeMillis, receivedTime) <= TIME_TOLERANCE;
-    String currentTime = String(currentTimeMillis);
-
-    if (isTimeWithinTolerance) {
-        Serial.println("Time is synced at " + currentTime);
-    } else {
-        Serial.println("time not equal. Current time: " + currentTime + ", Received time: " + value1);
-        client.publish(timeTopic, currentTime.c_str());
-    }
 }
 
 void handleInit(String &topic, std::vector<String> &values) {
@@ -164,25 +161,22 @@ void parseIncomingMessage(const String &msg, String &command, std::vector<String
     }
 }
 
-void volume(float newLinearVolume) {
-    currentVolumeDb = mapLinearToDb(newLinearVolume);
+void volume(float newVolume) {
     leftAck = false;
     rightAck = false;
-    sendCommandToClient(VOLUME_COMMAND, String(currentVolumeDb));
-    currentLinearVolume = newLinearVolume;
+    sendCommandToClient(VOLUME_COMMAND, String(newVolume));
     Serial.print("Sent Volume: ");
-    Serial.println(String(currentVolumeDb) + "Db");
+    currentVolumeDb = newVolume;
+    Serial.println(String(newVolume) + "Db");
 }
 
-void sub(float newLinearSubVolume) {
-    currentSubVolumeDb = mapLinearToDb(newLinearSubVolume);
+void sub(float newSubVolume) {
     leftAck = false;
     rightAck = false;
-    String command = "Sub";
-    sendCommandToClient(SUB_VOLUME_COMMAND, String(currentSubVolumeDb));
-    currentLinearSubVolume = newLinearSubVolume;
+    sendCommandToClient(SUB_VOLUME_COMMAND, String(newSubVolume));
     Serial.print("Sent Sub: ");
-    Serial.println(String(currentSubVolumeDb) + "Db");
+    currentSubVolumeDb = newSubVolume;
+    Serial.println(String(newSubVolume) + "Db");
 }
 
 void mute(float newMuteState) {
@@ -245,36 +239,19 @@ void handleIRCode(unsigned long code) {
         switch (code) {
             case volumeUpCode:
                 lastIRCode = code;
-                if (currentLinearVolume < MAX_LINEAR_VOLUME) {
-                    if (currentLinearVolume < VOLUME_STEP) {
-                        currentLinearVolume = VOLUME_STEP;
-                    }else{
-                        currentLinearVolume += VOLUME_STEP;
-                        currentLinearVolume = floatsAreSoDumb(currentLinearVolume);
-                    }
-                    volume(currentLinearVolume);
-                    Serial.println("Volume Up: " + String(currentLinearVolume));
-                } else {
-                    volume(MAX_LINEAR_VOLUME);
-                    Serial.println("Volume already at max.");
-                }
+                sliderPosition += 0.04; // Increment by 1/25
+                sliderPosition = max(min(sliderPosition, 1.0), 0.0); // Clamp to [0, 1]
+                Serial.print("Volume increased to ");
+                Serial.println(volumeControl(sliderPosition), 6);
+                volume((float) volumeControl(subSliderPosition));
                 break;
             case volumeDownCode:
                 lastIRCode = code;
-                if (currentLinearVolume > MINIMUM_POSSIBLE_VOLUME) {
-                    if (currentLinearVolume > VOLUME_STEP) {
-                        currentLinearVolume -= VOLUME_STEP;
-                        currentLinearVolume = floatsAreSoDumb(currentLinearVolume);
-                    } else {
-                        // This block will only execute once when currentLinearVolume is at 0.04
-                        currentLinearVolume = MINIMUM_POSSIBLE_VOLUME; // Directly set to final minimum volume
-                    }
-                    volume(currentLinearVolume);
-                    Serial.println("Volume Down: " + String(currentLinearVolume));
-                } else {
-                    volume(MINIMUM_POSSIBLE_VOLUME);
-                    Serial.println("Volume already at min: " + String(currentLinearVolume));
-                }
+                sliderPosition -= 0.04; // Decrement by 1/25
+                sliderPosition = max(min(sliderPosition, 1.0), 0.0); // Clamp to [0, 1]
+                Serial.print("Volume decreased to ");
+                Serial.println(volumeControl(sliderPosition), 6);
+                volume((float) volumeControl(subSliderPosition));
                 break;
             case muteCode:
                 lastIRCode = code;
@@ -290,36 +267,19 @@ void handleIRCode(unsigned long code) {
                 break;
             case subUpCode:
                 lastIRCode = code;
-                if (currentLinearSubVolume < MAX_LINEAR_VOLUME) {
-                    if (currentLinearSubVolume < VOLUME_STEP) {
-                        currentLinearSubVolume = VOLUME_STEP;
-                    }else{
-                        currentLinearSubVolume += VOLUME_STEP;
-                        currentLinearSubVolume = floatsAreSoDumb(currentLinearSubVolume);
-                    }
-                    sub(currentLinearSubVolume);
-                    Serial.println("Sub Volume Up: " + String(currentLinearSubVolume));
-                } else {
-                    sub(MAX_LINEAR_VOLUME);
-                    Serial.println("Sub Volume already at max.");
-                }
+                subSliderPosition += 0.04; // Increment by 1/25
+                subSliderPosition = max(min(subSliderPosition, 1.0), 0.0); // Clamp to [0, 1]
+                Serial.print("Volume increased to ");
+                Serial.println(volumeControl(subSliderPosition), 6);
+                sub((float) volumeControl(subSliderPosition));
                 break;
             case subDownCode:
                 lastIRCode = code;
-                if (currentLinearSubVolume > MINIMUM_POSSIBLE_VOLUME) {
-                    if (currentLinearSubVolume > VOLUME_STEP) {
-                        currentLinearSubVolume -= VOLUME_STEP;
-                        currentLinearSubVolume = floatsAreSoDumb(currentLinearSubVolume);
-                    } else {
-                        // This block will only execute once when currentLinearVolume is at 0.04
-                        currentLinearSubVolume = MINIMUM_POSSIBLE_VOLUME; // Directly set to final minimum volume
-                    }
-                    sub(currentLinearSubVolume);
-                    Serial.println("Sub Volume Down: " + String(currentLinearSubVolume));
-                } else {
-                    sub(MINIMUM_POSSIBLE_VOLUME);
-                    Serial.println("Volume already at min: " + String(currentLinearSubVolume));
-                }
+                subSliderPosition -= 0.04; // Decrement by 1/25
+                subSliderPosition = max(min(subSliderPosition, 1.0), 0.0); // Clamp to [0, 1]
+                Serial.print("Volume decreased to ");
+                Serial.println(volumeControl(subSliderPosition), 6);
+                volume((float) volumeControl(subSliderPosition));
                 break;
             case sourceCode:
                 lastIRCode = code;
@@ -354,8 +314,3 @@ const char* getTopic(const String& topic) {
         return nullptr;
     }
 }
-
-    float floatsAreSoDumb(float var) {
-        float value = (int)(var * 100);
-        return (float)value / 100;
-    }
