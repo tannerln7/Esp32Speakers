@@ -24,7 +24,7 @@ void initDebug() {
 void wifiSetup() {
     delay(10);
     const char* ssid = "ATT SUX";
-    const char* password = "***REMOVED***";
+    const char* password = "peanutapple42";
     // We start by connecting to a WiFi network
     Serial.println();
     Serial.print("Connecting to ");
