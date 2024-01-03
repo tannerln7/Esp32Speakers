@@ -22,7 +22,6 @@ void handleAck(String &topic, float &currentValue, const float &receivedValue);
 void handleHeartbeat(String &topic, std::vector<String> &values);
 void handleInit(String &topic, std::vector<String> &values);
 void handleTime(String &topic, String &value1);
-unsigned long abs_diff(unsigned long a, unsigned long b);
 void handleIRCode(unsigned long code);
 void sendCommandToClient(const String& command, const String &value);
 const char* getTopic(const String &topic);
