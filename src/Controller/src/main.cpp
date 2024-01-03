@@ -7,12 +7,12 @@
 #include <websocket.h>
 #include <WiFiMulti.h>
 
-const char* ssid = "ATT SUX";
-const char* password = "peanutapple42";
+const char* ssid = "ssid";
+const char* password = "password";
 const char* mqttServer = "mainsail.local";
 const int mqttPort = 1883;
-const char* mqttUser = "tannerln7";
-const char* mqttPassword = "Muspotaebo1324";
+const char* mqttUser = "username";
+const char* mqttPassword = "password";
 const char* leftTopic = "home/livingroom/left/command";
 const char* leftAckTopic = "home/livingroom/left/ack";
 const char* rightTopic = "home/livingroom/right/command";
