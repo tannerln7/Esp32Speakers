@@ -7,12 +7,12 @@
 #include <PubSubClient.h>
 #include <WiFi.h>
 
-const char* ssid = "ATT SUX";
-const char* password = "***REMOVED***";
+const char* ssid = "ssid";
+const char* password = "password";
 const char* mqttServer = "mainsail.local";
 const int mqttPort = 1883;
-const char* mqttUser = "tannerln7";
-const char* mqttPassword = "***REMOVED***";
+const char* mqttUser = "user";
+const char* mqttPassword = "psswd";
 const char* leftTopic = "home/livingroom/left/command";
 const char* leftAckTopic = "home/livingroom/left/ack";
 
