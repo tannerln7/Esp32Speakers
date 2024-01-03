@@ -1,10 +1,10 @@
 #include "INCLUDE.h"
 #include <WiFi.h>
 #include <PubSubClient.h>
-#include <BluetoothA2DPSink.h>
-#include <WebSocketsServer.h>
+//#include <BluetoothA2DPSink.h>
+//#include <WebSocketsServer.h>
 #include <AsyncTCP.h>
-#include <websocket.h>
+//#include <websocket.h>
 #include <WiFiMulti.h>
 
 const char* ssid = "ssid";
@@ -19,11 +19,11 @@ const char* rightTopic = "home/livingroom/right/command";
 const char* rightAckTopic = "home/livingroom/right/ack";
 
 WiFiMulti WiFiMulti;
-WebSocketsServer webSocket = WebSocketsServer(81);
-String wsUrl;
+//WebSocketsServer webSocket = WebSocketsServer(81);
+//String wsUrl;
 WiFiClient espClient;
 PubSubClient client(espClient);
-BluetoothA2DPSink a2dpSink;
+//BluetoothA2DPSink a2dpSink;
 
 void callback(const char* topic, byte* payload, unsigned int length) {
     String message;
