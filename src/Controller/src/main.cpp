@@ -69,20 +69,20 @@ void setup() {
     while(WiFiMulti.run() != WL_CONNECTED) {
         delay(100);
     }
-    webSocket.begin();
-    webSocket.onEvent(webSocketEvent);
+//    webSocket.begin();
+//    webSocket.onEvent(webSocketEvent);
 
     //wifiSetup();
     client.setServer(mqttServer, mqttPort);
     client.setCallback(callback);
-    a2dpSink.start("ESP32_AudioSink");
-    a2dpSink.set_stream_reader(audioDataCallback, false);
-    a2dpSink.set_on_data_received(data_received_callback);
+//    a2dpSink.start("ESP32_AudioSink");
+//    a2dpSink.set_stream_reader(audioDataCallback, false);
+//    a2dpSink.set_on_data_received(data_received_callback);
     irSetup();
     reconnect();
-    wsUrl = "ws://";
-    wsUrl += WiFi.localIP().toString();
-    wsUrl += ":81/ws"; // Assuming WebSocket server is on port 81 and path "/ws"
+//    wsUrl = "ws://";
+//    wsUrl += WiFi.localIP().toString();
+//    wsUrl += ":81/ws"; // Assuming WebSocket server is on port 81 and path "/ws"
     Serial.println("Wifi, MQTT, Bluetooth, and IR setup complete");
 }
 
@@ -98,7 +98,7 @@ void loop() {
         reconnect();
     }
     initDebug();
-    webSocket.loop();
+//    webSocket.loop();
     client.loop();
     delay(10);
 }
