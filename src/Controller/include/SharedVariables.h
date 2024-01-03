@@ -11,9 +11,8 @@
 #endif //ESP32SPEAKERS_SHAREDVARIABLES_H
 
 //start-up DSP settings
-extern float currentLinearVolume;
+
 extern float currentVolumeDb;
-extern float currentLinearSubVolume;
 extern float currentSubVolumeDb;
 extern float muteState;
 extern float currentSource;
